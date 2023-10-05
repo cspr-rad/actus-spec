@@ -47,7 +47,7 @@
       devShells.${system}.default = pkgs.mkShell {
         name = "actus-spec-shell";
         buildInputs = (with pkgs; [
-          pkgs.typst
+          typst
         ]) ++ (with pre-commit-hooks.packages.${system};
           [
             nixpkgs-fmt
