@@ -1,3 +1,4 @@
+
 = ACTUS Specification version 2
 
 This document represents a revision of the ACTUS specification.
@@ -18,11 +19,12 @@ We also provide a test harness that any implementor can use to test their implem
 
 === Note on terminology
 
-#let should = text("SHOULD")
-#let should_not = text("SHOULD NOT")
-#let must = text("MUST")
-#let must_not = text("MUST NOT")
-#should, #should_not, #must, #must_not, ... #todo("refer to that rfc")
+#show "must": raw("MUST")
+#show "must not": raw("MUST NOT")
+#show "should": raw("SHOULD")
+#show "should not": raw("SHOULD NOT")
+
+should, should not, must, must not, ... #todo("refer to that rfc")
 
 === Data Types
 
@@ -36,14 +38,14 @@ In particular, this specification aims to describe exactly how implementations m
 
 ==== Amounts of money
 
-For each currency, a minimal quantisation #must be defined.
+For each currency, a minimal quantisation must be defined.
 For example, the minimal quantisation of USD may be defined as 1 cent.
 
 The quantisation factor is defined as the number of minimal quantisations that represent one unit of the currency.
 For example, The quantisation factor of USD is then 100, because 100 cents equals one USD.
 
-Amounts of money #must be represented as an integral amount of a given minimal quantisation of its currency.
-(An amount of money #must_not be represented as a floating point number, or an arbitrary-precision rational number.)
+Amounts of money must be represented as an integral amount of a given minimal quantisation of its currency.
+(An amount of money must_not be represented as a floating point number, or an arbitrary-precision rational number.)
 For example, one USD can be represented as `100` cents if the quantisation factor is chosen to be 100.
 
 #todo("Specify i64 vs i128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).")
