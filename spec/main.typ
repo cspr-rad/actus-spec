@@ -75,3 +75,17 @@ Note that a timezone offset is only valid within a timezone at a given time
 
 A timezone, in theory, is a function from local datetimes without timezone offset, to timezone offsets.
 #todo("Refer to the timezone database to describe how this mapping works in practice")
+
+
+
+== Contract concepts
+=== Events
+=== Schedules
+=== State
+=== State
+
+== Events
+== State Variables
+== Contracts
+
+=== Principle at Maturity (PAM)
