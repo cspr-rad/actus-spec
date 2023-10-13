@@ -161,7 +161,8 @@ A timezone, in theory, is a function from local datetimes without timezone offse
 == State Variables
 == Contracts
 
-=== Principle at Maturity (PAM)
+#let PAM= { link(label("PAM"), "PAM (Principal at Maturity)") }
+=== #PAM <PAM>
 
 ==== Allowed events
 
