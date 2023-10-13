@@ -29,5 +29,4 @@
 
    ```
    feedback build
-   open result/spec.pdf
    ```

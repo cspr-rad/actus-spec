@@ -1,2 +1,4 @@
 loops:
-  build: nix build . -L
+  build:
+    command: nix build . -L
+    after-first: xdg-open result

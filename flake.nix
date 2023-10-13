@@ -14,14 +14,13 @@
       system = "x86_64-linux";
       overlay = final: _: {
         actusSpec = final.stdenv.mkDerivation {
-          name = "actus-spec";
+          name = "actus-spec.pdf";
           src = ./spec;
           buildInputs = [
             final.typst
           ];
           buildCommand = ''
-            mkdir -p $out
-            typst compile $src/main.typ $out/spec.pdf
+            typst compile $src/main.typ $out
           '';
         };
       };
