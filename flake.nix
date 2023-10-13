@@ -3,12 +3,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-23.05";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    typstfmt.url = "github:astrale-sharp/typstfmt";
   };
 
   outputs =
     { self
     , nixpkgs
     , pre-commit-hooks
+    , typstfmt
     }:
     let
       system = "x86_64-linux";
@@ -40,6 +42,13 @@
           hooks = {
             nixpkgs-fmt.enable = true;
             deadnix.enable = true;
+            typstfmt = {
+              enable = true;
+              name = "typstfmt";
+              entry = "${typstfmt.packages.${system}.default}/bin/typstfmt";
+              types = [ "file" ];
+              files = "\\.(typ)$";
+            };
           };
         };
       };
