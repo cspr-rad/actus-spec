@@ -42,9 +42,14 @@
           hooks = {
             nixpkgs-fmt.enable = true;
             deadnix.enable = true;
+            jsonfmt = {
+              enable = true;
+              entry = "${pkgs.jsonfmt}/bin/jsonfmt -w";
+              types = [ "file" ];
+              files = "\\.(json)$";
+            };
             typstfmt = {
               enable = true;
-              name = "typstfmt";
               entry = "${typstfmt.packages.${system}.default}/bin/typstfmt";
               types = [ "file" ];
               files = "\\.(typ)$";
@@ -56,6 +61,8 @@
         name = "actus-spec-shell";
         buildInputs = (with pkgs; [
           typst
+          jsonfmt
+          typstfmt.packages.${system}.default
         ]) ++ (with pre-commit-hooks.packages.${system};
           [
             nixpkgs-fmt

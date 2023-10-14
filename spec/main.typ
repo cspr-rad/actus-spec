@@ -1,3 +1,4 @@
+#let dictionary = json("dictionary.json")
 
 = ACTUS Specification version 2
 
@@ -97,7 +98,6 @@ offset, to timezone offsets.
 === Events
 === Schedules
 === State
-=== State
 
 == Events
 
@@ -105,79 +105,45 @@ offset, to timezone offsets.
   "put all the dictionary info in this document in a 'correct by construction' way so that we can generate the dictionary instead of writing it separately",
 )
 
-#let IED = { link(label("IED"), "IED (Initial Exchange Date)") }
-=== #IED <IED>
+#let events = dictionary.at("events")
+#for event in events.values() [
+  === #text(event.acronym) (#text(event.name)) #label(event.identifier)
+  #text(event.description)
+]
 
-#let FP = { link(label("FP"), "FP (Fee Payment)") }
-=== #FP <FP>
+#let make_event_label(identifier) = {
+  let event = events.at(identifier)
+  [ #link(label(event.identifier), [ #text(event.acronym) (#text(event.name)) ]) ]
+}
 
-#let PR = { link(label("PR"), "PR (Principal Redemption)") }
-=== #PR <PR>
-
-#let PD = { link(label("PD"), "PD (Principal Drawing)") }
-=== #PD <PD>
-
-#let PRF = { link(label("PRF"), "PRF (Principal Payment Amount Fixing)") }
-=== #PRF <PRF>
-
-#let PY = { link(label("PY"), "PY (Penalty Payment)") }
-=== #PY <PY>
-
-#let PP = { link(label("PP"), "PP (Principal Prepayment)") }
-=== #PP <PP>
-
-#let IP = { link(label("IP"), "IP (Interest Payment)") }
-=== #IP <IP>
-
-#let IC = { link(label("IC"), "IC (Interest Capitalization)") }
-=== #IC <IC>
-
-#let AD = { link(label("AD"), "AD (Monitoring)") }
-=== #AD <AD>
-
-#let IPCI = { link(label("IPCI"), "IPCI (Interest Capitalization)") }
-=== #IPCI <IPCI>
-
-#let CE = { link(label("CE"), "CE (Credit Event)") }
-=== #CE <CE>
-
-#let RRF = { link(label("RRF"), "RRF (Rate Reset Fixing with Known Rate)") }
-=== #RRF <RRF>
-
-#let RR = { link(label("RR"), "RR (Rate Reset Fixing with Unknown Rate)") }
-=== #RR <RR>
-
-#let DV = { link(label("DV"), "DV (Dividend Payment)") }
-=== #DV <DV>
-
-#let PRD = { link(label("PRD"), "PRD (Purchase)") }
-=== #PRD <PRD>
-
-#let MR = { link(label("MR"), "MR (Margin Call)") }
-=== #MR <MR>
-
-#let TD = { link(label("TD"), "TD (Termination)") }
-=== #TD <TD>
-
-#let SC = { link(label("SC"), "SC (Scaling Index Fixing)") }
-=== #SC <SC>
-
-#let IPCB = { link(label("IPCB"), "IPCB (Interest Calculation Base Fixing)") }
-=== #IPCB <IPCB>
-
-#let MD = { link(label("MD"), "MD (Maturity)") }
-=== #MD <MD>
-
-#let XD = { link(label("XD"), "XD (Exercise)") }
-=== #XD <XD>
-
-#let STD = { link(label("STD"), "STD (Settlement)") }
-=== #STD <STD>
+#let AD = make_event_label("monitoring")
+#let IED = make_event_label("initialExchange")
+#let FP = make_event_label("feePayment")
+#let PR = make_event_label("principalRedemption")
+#let PD = make_event_label("principalDrawing")
+#let PRF = make_event_label("principalPaymentAmountFixing")
+#let PY = make_event_label("penalytPayment")
+#let PP = make_event_label("principalPrepayment")
+#let IP = make_event_label("interestPayment")
+#let IPCI = make_event_label("interestCapitalization")
+#let CE = make_event_label("creditEvent")
+#let RRF = make_event_label("rateResetFixed")
+#let RR = make_event_label("rateResetVariable")
+#let DV = make_event_label("dividendPayment")
+#let PRD = make_event_label("purchase")
+#let MR = make_event_label("marginCall")
+#let TD = make_event_label("termination")
+#let SC = make_event_label("scalingIndexFixing")
+#let IPCB = make_event_label("interestCalculationBaseFixing")
+#let MD = make_event_label("maturity")
+#let XD = make_event_label("exercise")
+#let STD = make_event_label("settlement")
 
 == State Variables
 == Contracts
 
 #let PAM = { link(label("PAM"), "PAM (Principal at Maturity)") }
+
 === #PAM <PAM>
 
 ==== Allowed events

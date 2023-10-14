@@ -11,7 +11,7 @@
    ```
 
    Without `direnv`:
-   
+
    ```
    Nix develop
    ```
