@@ -244,8 +244,11 @@
 
 = ACTUS Specification version 2
 
-This document represents a revision of the ACTUS specification. It focusses on a
-lack of ambiguity and helping with practical implementations.
+#todo("Table of contents")
+#todo("Numbered sections")
+
+This document represents a revision of the ACTUS specification. It focusses on
+consistency, a lack of ambiguity, and helping with practical implementations.
 
 The specification describes multiple contract types. For each contract type, it
 first describes the specification, then examples, and finally test cases. These
@@ -346,18 +349,28 @@ offset, to timezone offsets.
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
 )
 
-== Contract concepts
-=== Terms
-=== Events
-=== Schedules
-=== State
+=== Contract concepts
+==== Terms
+==== Events
+==== Schedules
+==== State
 
 == Terms
 
 #for term in terms.values() [
   === #text(term.name) (#raw(term.acronym)) #label("term_" + term.identifier)
+
+  Group: #text(term.group)
+
+  #if (term.default != "") [
+    Default value: #text(term.default)
+  ]
+
   #text(term.description)
 
+  #todo(
+    "Link to types so that we're sure that every type is specified. In order to do so we will have to be able to strip [] for the link",
+  )
   Type: #text(term.type)
   #if (term.type == "Real") [
     #todo(
@@ -381,6 +394,9 @@ offset, to timezone offsets.
 
 #for event in events.values() [
   === #text(event.name) (#raw(event.acronym)) #label("event_" + event.identifier)
+
+  Sequence: #text(event.sequence)
+
   #text(event.description)
 ]
 
