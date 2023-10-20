@@ -350,9 +350,67 @@ offset, to timezone offsets.
 
 == Contracts
 
-#let PAM = { link(label("PAM"), "PAM (Principal at Maturity)") }
+#let contracts = dictionary.at("contracts")
+
+#let make_contract_label(identifier) = {
+  let contract = contracts.at(identifier)
+  [ #link(
+      label("contract_" + contract.identifier),
+      [ #raw(contract.acronym) (#text(contract.name)) ],
+    ) ]
+}
+
+#let ANN = make_contract_label("annuity")
+#let CLM = make_contract_label("callMoney")
+#let CAPFL = make_contract_label("capFloor")
+#let CSH = make_contract_label("cash")
+#let CEC = make_contract_label("collateral")
+#let COM = make_contract_label("commodity")
+#let BNDCP = make_contract_label("convertibleNote")
+#let CDSWP = make_contract_label("creditDefaultSwap")
+#let CLNTE = make_contract_label("creditLinkedNote")
+#let EXOTi = make_contract_label("eXOTi")
+#let ANX = make_contract_label("exoticAnnuity")
+#let LAX = make_contract_label("exoticLinearAmortizer")
+#let NAX = make_contract_label("exoticNegativeAmortizer")
+#let FXOUT = make_contract_label("foreignExchangeOutright")
+#let FUTUR = make_contract_label("future")
+#let CEG = make_contract_label("guarantee")
+#let LAM = make_contract_label("linearAmortizer")
+#let MAR = make_contract_label("margining")
+#let NAM = make_contract_label("negativeAmortizer")
+#let OPTNS = make_contract_label("option")
+#let PBN = make_contract_label("perpetualBonds")
+#let SWPPV = make_contract_label("plainVanillaSwap")
+#let PAM = make_contract_label("principalAtMaturity")
+#let REP = make_contract_label("repurchaseAgreement")
+#let SCRCR = make_contract_label("securitizationCreditRisk")
+#let SCRMR = make_contract_label("securitizationMarketRisk")
+#let STK = make_contract_label("stock")
+#let SWAPS = make_contract_label("swap")
+#let TRSWP = make_contract_label("totalReturnSwap")
+#let UMP = make_contract_label("undefinedMaturityProfile")
+#let BNDWR = make_contract_label("warrant")
+
+#for contract in contracts.values() [
+  === #text(contract.name) (#raw(contract.acronym)) #label("contract_" + contract.identifier)
+
+  Coverage: #text(contract.coverage)
+
+  Family: #text(contract.family)
+
+  Class: #text(contract.class)
+
+  #text(contract.description)
+
+  #todo("Relevant terms")
+  #todo("Allowed events")
+  #todo("Required state variables")
+]
 
 === #PAM <PAM>
+
+==== Relevant terms
 
 ==== Allowed events
 
