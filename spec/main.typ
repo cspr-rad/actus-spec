@@ -440,33 +440,43 @@ offset, to timezone offsets.
   #text(contract.description)
 
   #todo("Relevant terms")
-  #todo("Allowed events")
-  #todo("Required state variables")
+
+  #todo("Put as much of this as possible into the .json files.")
+  #todo(
+    "We can probably put the required state variables and the variable initialisation in the same array.",
+  )
+  #if (contract.acronym == "PAM") [
+    Allowed events:
+    - #IED
+    - #FP
+    - #MD
+    - #AD
+    - #PP
+    - #PY
+    - #PRD
+    - #TD
+    - #IP
+    - #IPCI
+    - #RR
+    - #RRF
+    - #SC
+    - #CE
+
+    Required state variables:
+    - #MD
+    - #NT
+    - #IPNR
+
+  ] else [
+    #todo("Allowed events")
+
+    #todo("Required state variables")
+  ]
+
+  #todo("Schedule with comments")
+
+  #todo("Variable initialisation")
+
+  #todo("State Transition & Payoff function")
 ]
 
-=== #PAM <PAM>
-
-==== Relevant terms
-
-==== Allowed events
-
-- #IED
-- #FP
-- #MD
-- #AD
-- #PP
-- #PY
-- #PRD
-- #TD
-- #IP
-- #IPCI
-- #RR
-- #RRF
-- #SC
-- #CE
-
-==== Required state variables
-
-- #MD
-- #NT
-- #IPNR
