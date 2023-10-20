@@ -1,7 +1,9 @@
 {
   description = "actus-spec";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-23.05";
+    # We use nixpkgs-unstable instead of nixos-23.05 to get a more
+    # recent version of typst: 0.8 instead of 0.4
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     typstfmt.url = "github:astrale-sharp/typstfmt";
   };

@@ -1,3 +1,6 @@
+#set document(title: "ACTUS Specification version 2")
+#set heading(numbering: "1.1.")
+
 // Helper functions for writing
 #let todo(str) = box({
   text("TODO: ", blue)
@@ -8,18 +11,19 @@
 // Data import
 #let dictionary = json("dictionary.json")
 
-#todo(
-  "Maybe we find a way to do these declarations (look in main.typ) for each event automatically? Perhaps we could just be required to write event(\"monitoring\") instead of #AD",
-)
+// TODO
+// Maybe we find a way to do these declarations for each event
+// automatically? Perhaps we could just be required to write
+// event("monitoring") instead of #AD
 
 #let terms = dictionary.at("terms")
 
 #let make_term_label(identifier) = {
   let term = terms.at(identifier)
-  [ #link(
-      label("term_" + term.identifier),
-      [ #raw(term.acronym) (#text(term.name)) ],
-    ) ]
+  link(
+    label("term_" + term.identifier),
+    [ #raw(term.acronym) (#text(term.name)) ],
+  )
 }
 
 #let IPAC = make_term_label("accruedInterest")
@@ -141,13 +145,17 @@
 
 #let events = dictionary.at("events")
 
-#let make_event_label(identifier) = {
-  let event = events.at(identifier)
-  [ #link(
-      label("event_" + event.identifier),
-      [ #raw(event.acronym) (#text(event.name)) ],
-    ) ]
-}
+#let make_event_label(identifier) = [
+  #let event = events.at(identifier)
+  #locate(loc => [
+    #let l = label("event_" + event.identifier)
+    #let arr = query(l, loc)
+    #if (arr.len() > 1) {
+      panic(event.identifier)
+    }
+    #link(l, [ #raw(event.acronym) (#text(event.name)) ])
+  ])
+]
 
 #let AD = make_event_label("monitoring")
 #let IED = make_event_label("initialExchange")
@@ -175,10 +183,10 @@
 #let state_variables = dictionary.at("state-variables")
 #let make_state_variable_label(identifier) = {
   let state_variable = state_variables.at(identifier)
-  [ #link(
-      label("state_variable_" + state_variable.identifier),
-      [ #raw(state_variable.acronym) (#text(state_variable.name)) ],
-    ) ]
+  link(
+    label("state_variable_" + state_variable.identifier),
+    [ #raw(state_variable.acronym) (#text(state_variable.name)) ],
+  )
 }
 
 #let IPAC = make_state_variable_label("accruedInterest")
@@ -204,10 +212,10 @@
 
 #let make_contract_label(identifier) = {
   let contract = contracts.at(identifier)
-  [ #link(
-      label("contract_" + contract.identifier),
-      [ #raw(contract.acronym) (#text(contract.name)) ],
-    ) ]
+  link(
+    label("contract_" + contract.identifier),
+    [ #raw(contract.acronym) (#text(contract.name)) ],
+  )
 }
 
 #let ANN = make_contract_label("annuity")
@@ -242,10 +250,10 @@
 #let UMP = make_contract_label("undefinedMaturityProfile")
 #let BNDWR = make_contract_label("warrant")
 
-= ACTUS Specification version 2
-
-#todo("Table of contents")
-#todo("Numbered sections")
+// Title page
+#page(align(center + horizon, text(30pt, "ACTUS Specification version 2")))
+#outline(title: auto, indent: auto)
+#pagebreak()
 
 This document represents a revision of the ACTUS specification. It focusses on
 consistency, a lack of ambiguity, and helping with practical implementations.
@@ -358,7 +366,8 @@ offset, to timezone offsets.
 == Terms
 
 #for term in terms.values() [
-  === #text(term.name) (#raw(term.acronym)) #label("term_" + term.identifier)
+  === #text(term.name) (#raw(term.acronym))
+  #label("term_" + term.identifier)
 
   Group: #text(term.group)
 
@@ -403,7 +412,8 @@ offset, to timezone offsets.
 == Events
 
 #for event in events.values() [
-  === #text(event.name) (#raw(event.acronym)) #label("event_" + event.identifier)
+  === #text(event.name) (#raw(event.acronym))
+  #label("event_" + event.identifier)
 
   Sequence: #text(event.sequence)
 
@@ -413,7 +423,8 @@ offset, to timezone offsets.
 == State Variables
 
 #for state_variable in state_variables.values() [
-  === #text(state_variable.name) (#raw(state_variable.acronym)) #label("state_variable_" + state_variable.identifier)
+  === #text(state_variable.name) (#raw(state_variable.acronym))
+  #label("state_variable_" + state_variable.identifier)
 
   #text(state_variable.description)
 
@@ -439,7 +450,8 @@ offset, to timezone offsets.
 == Contracts
 
 #for contract in contracts.values() [
-  === #text(contract.name) (#raw(contract.acronym)) #label("contract_" + contract.identifier)
+  === #text(contract.name) (#raw(contract.acronym))
+  #label("contract_" + contract.identifier)
 
   Coverage: #text(contract.coverage)
 
