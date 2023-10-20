@@ -264,9 +264,9 @@ test cases are machine readible such that each implementation can use them to
 test itself. We also provide a test harness that any implementor can use to test
 their implementation against arbitrary test cases.
 
-== Prelude
+= Prelude
 
-=== Note on terminology
+== Note on terminology
 
 #show "must": raw("MUST")
 #show "must not": raw("MUST NOT")
@@ -275,7 +275,7 @@ their implementation against arbitrary test cases.
 
 should, should not, must, must not, ... #todo("refer to that rfc")
 
-=== Data Types
+== Data Types
 
 While the original ACTUS specification describes contract schedules using
 mathematical notation and, in particular, real numbers, we want to take a more
@@ -288,17 +288,17 @@ adhere to the specification. In particular, this specification aims to describe
 exactly how implementations must behave when precision is lost due to the
 reality of working in a finite amount of time and space.
 
-==== Enum <type_Enum>
+=== Enum <type_Enum>
 
 When a value is of an enum type, the allowed values are specified.
 
-==== Real <type_Real>
+=== Real <type_Real>
 
 #todo(
   "Real numbers don't exist in computers. We must get rid of this section.",
 )
 
-==== Amounts of money <Amount>
+=== Amounts of money <Amount>
 
 For each currency, a minimal quantisation must be defined. For example, the
 minimal quantisation of USD may be defined as 1 cent.
@@ -321,12 +321,12 @@ to be 100.
   "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
 )
 
-==== Day
+=== Day
 
 A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
 
-==== Time of day
+=== Time of day
 
 A time of day is represented as an integral number of microseconds since the
 start of the day.
@@ -334,16 +334,16 @@ start of the day.
   "Figure out if that's too much precision. Maybe we don't care about sub-second timing.",
 )
 
-==== Local datetime
+=== Local datetime
 
 A datetime is a tuple of a day and a time of day.
 
-==== Timezone offset
+=== Timezone offset
 
 A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
 Note that a timezone offset is only valid within a timezone at a given time
 
-==== Timezone
+=== Timezone
 
 A timezone, in theory, is a function from local datetimes without timezone
 offset, to timezone offsets.
@@ -351,19 +351,19 @@ offset, to timezone offsets.
   "Refer to the timezone database to describe how this mapping works in practice",
 )
 
-==== Timestamp <type_Timestamp>
+=== Timestamp <type_Timestamp>
 
 #todo(
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
 )
 
-=== Contract concepts
-==== Terms
-==== Events
-==== Schedules
-==== State
+== Contract concepts
+=== Terms
+=== Events
+=== Schedules
+=== State
 
-== Terms
+= Terms
 
 #for term in terms.values() [
   === #text(term.name) (#raw(term.acronym))
@@ -409,7 +409,7 @@ offset, to timezone offsets.
   ]
 ]
 
-== Events
+= Events
 
 #for event in events.values() [
   === #text(event.name) (#raw(event.acronym))
@@ -420,7 +420,7 @@ offset, to timezone offsets.
   #text(event.description)
 ]
 
-== State Variables
+= State Variables
 
 #for state_variable in state_variables.values() [
   === #text(state_variable.name) (#raw(state_variable.acronym))
@@ -447,7 +447,7 @@ offset, to timezone offsets.
   ]
 ]
 
-== Contracts
+= Contracts
 
 #for contract in contracts.values() [
   === #text(contract.name) (#raw(contract.acronym))
