@@ -112,6 +112,10 @@ offset, to timezone offsets.
   [ #link(label(event.identifier), [ #raw(event.acronym) (#text(event.name)) ]) ]
 }
 
+#todo(
+  "Maybe we find a way to do this declaration (look in main.typ) for each event automatically? Perhaps we could just be required to write event(\"monitoring\") instead of #AD",
+)
+
 #let AD = make_event_label("monitoring")
 #let IED = make_event_label("initialExchange")
 #let FP = make_event_label("feePayment")
@@ -168,6 +172,25 @@ offset, to timezone offsets.
     ) ]
 }
 
+#let IPAC = make_state_variable_label("accruedInterest")
+#let IPAC2 = make_state_variable_label("accruedInterest2")
+#let PRF = make_state_variable_label("contractPerformance")
+#let XA = make_state_variable_label("exerciseAmount")
+#let XD = make_state_variable_label("exerciseDate")
+#let FEAC = make_state_variable_label("feeAccrued")
+#let ICBA = make_state_variable_label("interestCalculationBaseAmount")
+#let SCIP = make_state_variable_label("interestScalingMultiplier")
+#let MD = make_state_variable_label("maturityDate")
+#let PRNXT = make_state_variable_label("nextPrincipalRedemptionPayment")
+#let IPNR = make_state_variable_label("nominalInterestRate")
+#let IPNR2 = make_state_variable_label("nominalInterestRate2")
+#let NPD = make_state_variable_label("nonPerformingDate")
+#let NT = make_state_variable_label("notionalPrincipal")
+#let NT2 = make_state_variable_label("notionalPrincipal2")
+#let SCNT = make_state_variable_label("notionalScalingMultiplier")
+#let SD = make_state_variable_label("statusDate")
+#let TD = make_state_variable_label("terminationDate")
+
 == Contracts
 
 #let PAM = { link(label("PAM"), "PAM (Principal at Maturity)") }
@@ -190,3 +213,9 @@ offset, to timezone offsets.
 - #RRF
 - #SC
 - #CE
+
+==== Required state variables
+
+- #MD
+- #NT
+- #IPNR
