@@ -101,19 +101,15 @@ offset, to timezone offsets.
 
 == Events
 
-#todo(
-  "put all the dictionary info in this document in a 'correct by construction' way so that we can generate the dictionary instead of writing it separately",
-)
-
 #let events = dictionary.at("events")
 #for event in events.values() [
-  === #text(event.acronym) (#text(event.name)) #label(event.identifier)
+  === #text(event.name) (#raw(event.acronym)) #label(event.identifier)
   #text(event.description)
 ]
 
 #let make_event_label(identifier) = {
   let event = events.at(identifier)
-  [ #link(label(event.identifier), [ #text(event.acronym) (#text(event.name)) ]) ]
+  [ #link(label(event.identifier), [ #raw(event.acronym) (#text(event.name)) ]) ]
 }
 
 #let AD = make_event_label("monitoring")
@@ -140,6 +136,38 @@ offset, to timezone offsets.
 #let STD = make_event_label("settlement")
 
 == State Variables
+
+#let state_variables = dictionary.at("state-variables")
+#for state_variable in state_variables.values() [
+  === #text(state_variable.name) (#raw(state_variable.acronym)) #label(state_variable.identifier)
+
+  #text(state_variable.description)
+
+  Type: #text(state_variable.type)
+  #if (state_variable.type == "Real") [
+    #todo(
+      "Real numbers don't exist in computers. We need to change this type. Most likely to an amount of money.",
+    )
+  ]
+  #if (state_variable.type == "Enum") [
+    ==== Allowed values:
+    #for allowed_value in state_variable.allowedValues [
+      - #raw(allowed_value.acronym) (#text(allowed_value.name)) #label(allowed_value.identifier)
+
+        #text(allowed_value.description)
+
+    ]
+  ]
+]
+
+#let make_state_variable_label(identifier) = {
+  let state_variable = state_variables.at(identifier)
+  [ #link(
+      label(state_variable.identifier),
+      [ #raw(state_variable.acronym) (#text(state_variable.name)) ],
+    ) ]
+}
+
 == Contracts
 
 #let PAM = { link(label("PAM"), "PAM (Principal at Maturity)") }

@@ -176,5 +176,204 @@
       "description": "Settlement of an exercised contractual claim",
       "sequence": "21"
     }
+  },
+  "state-variables": {
+    "accruedInterest": {
+      "identifier": "accruedInterest",
+      "name": "Accrued Interest",
+      "acronym": "IPAC",
+      "description": "The current value of accrued interest",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "accruedInterest2": {
+      "identifier": "accruedInterest2",
+      "name": "Accrued Interest 2",
+      "acronym": "IPAC2",
+      "description": "The current value of accrued interest of the second leg",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "contractPerformance": {
+      "identifier": "contractPerformance",
+      "name": "Contract Performance",
+      "acronym": "PRF",
+      "description": "Indicates the current Contract Performance status. Different states of the contract range from performing to default.",
+      "type": "Enum",
+      "allowedValues": [
+        {
+          "option": "0",
+          "identifier": "performant",
+          "name": "Performant",
+          "acronym": "PF",
+          "description": "Contract is performing according to terms and conditions."
+        },
+        {
+          "option": "1",
+          "identifier": "delayed",
+          "name": "Delayed",
+          "acronym": "DL",
+          "description": "Contractual payment obligations are delayed according to the Grace Period."
+        },
+        {
+          "option": "2",
+          "identifier": "delinquent",
+          "name": "Delinquent",
+          "acronym": "DQ",
+          "description": "Contractual payment obligations are delinquent according to the Delinquency Period."
+        },
+        {
+          "option": "3",
+          "identifier": "default",
+          "name": "Default",
+          "acronym": "DF",
+          "description": "Contract defaulted on payment obligations according to Delinquency Period."
+        },
+        {
+          "option": "4",
+          "identifier": "matured",
+          "name": "Matured",
+          "acronym": "MA",
+          "description": "Contract matured."
+        },
+        {
+          "option": "5",
+          "identifier": "terminated",
+          "name": "Terminated",
+          "acronym": "TE",
+          "description": "Contract has been terminated."
+        }
+      ]
+    },
+    "exerciseAmount": {
+      "identifier": "exerciseAmount",
+      "name": "Exercise Amount",
+      "acronym": "XA",
+      "description": "The amount fixed for a the contingent event/obligation exercised at Exercise Date",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "exerciseDate": {
+      "identifier": "exerciseDate",
+      "name": "Exercise Date",
+      "acronym": "XD",
+      "description": "The timestamp at which a contingent event/obligation is exercised",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "feeAccrued": {
+      "identifier": "feeAccrued",
+      "name": "Fee Accrued",
+      "acronym": "FEAC",
+      "description": "The current value of accrued fees",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "interestCalculationBaseAmount": {
+      "identifier": "interestCalculationBaseAmount",
+      "name": "Interest Calculation Base Amount",
+      "acronym": "ICBA",
+      "description": "The basis at which interest is being accrued. Potentially different from NVL.",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "interestScalingMultiplier": {
+      "identifier": "interestScalingMultiplier",
+      "name": "Interest Scaling Multiplier",
+      "acronym": "SCIP",
+      "description": "The multiplier being applied to interest cash flows",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "maturityDate": {
+      "identifier": "maturityDate",
+      "name": "Maturity Date",
+      "acronym": "MD",
+      "description": "The timestamp as per which the contract matures according to the initial terms or as per unscheduled events",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "nextPrincipalRedemptionPayment": {
+      "identifier": "nextPrincipalRedemptionPayment",
+      "name": "Next Principal Redemption Payment",
+      "acronym": "PRNXT",
+      "description": "The value at which principal is being repaid. This may be including or excluding of interest depending on the Contract Type",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nominalInterestRate": {
+      "identifier": "nominalInterestRate",
+      "name": "Nominal Interest Rate",
+      "acronym": "IPNR",
+      "description": "The applicable nominal rate",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nominalInterestRate2": {
+      "identifier": "nominalInterestRate2",
+      "name": "Nominal Interest Rate 2",
+      "acronym": "IPNR2",
+      "description": "The applicable nominal rate",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nonPerformingDate": {
+      "identifier": "nonPerformingDate",
+      "name": "Non Performing Date",
+      "acronym": "NPD",
+      "description": "The date of the (uncovered) payment event responsible for the current value of the Contract Performance state variable.",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "notionalPrincipal": {
+      "identifier": "notionalPrincipal",
+      "name": "Notional Principal",
+      "acronym": "NT",
+      "description": "The outstanding nominal value",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "notionalPrincipal2": {
+      "identifier": "notionalPrincipal2",
+      "name": "Notional Principal 2",
+      "acronym": "NT2",
+      "description": "The outstanding nominal value of the second leg",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "notionalScalingMultiplier": {
+      "identifier": "notionalScalingMultiplier",
+      "name": "Notional Scaling Multiplier",
+      "acronym": "SCNT",
+      "description": "The multiplier being applied to principal cash flows",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "statusDate": {
+      "identifier": "statusDate",
+      "name": "Status Date",
+      "acronym": "SD",
+      "description": "The timestamp as per which the state is captured at any point in time",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "terminationDate": {
+      "identifier": "terminationDate",
+      "name": "Termination Date",
+      "acronym": "TD",
+      "description": "The timestamp of unscheduled termination of a contract",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    }
   }
 }
