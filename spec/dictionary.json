@@ -225,7 +225,7 @@
           "description": "Calculate accruals etc. first then shift event dates. Shift to the most recent preceding business day if this falls in the same month. Shift to the next following business day otherwise."
         }
       ],
-      "default": "nos",
+      "default": "noShift",
       "description": "BDC's are linked to a calendar. Calendars have working and non-working days. A BDC value other than N means that cash flows cannot fall on non-working days, they must be shifted to the next business day (following) or the previous on (preceding).\nThese two simple rules get refined twofold:\n- Following modified (preceding): Same like following (preceding), however if a cash flow gets shifted into a new month, then  it is shifted to preceding (following) business day.\n- Shift/calculate (SC) and calculate/shift (CS). Accrual, principal, and possibly other calculations are affected by this choice. In the case of SC first the dates are shifted and after the shift cash flows are calculated. In the case of CS it is the other way round.\nAttention: Does not affect non-cyclical dates such as PRD, MD, TD, IPCED since they can be set to the correct date directly."
     },
     "calendar": {
@@ -362,7 +362,7 @@
           "description": "Contract has been terminated."
         }
       ],
-      "default": "PF",
+      "default": "performant",
       "description": "Indicates the current contract performance status. Different states of the contract range from performing to default."
     },
     "contractRole": {
@@ -954,7 +954,7 @@
           "description": "Interest is paid at the end of the interest period."
         }
       ],
-      "default": "E",
+      "default": "end",
       "description": "Usually, interest is paid at the end of each IPCL which corresponds to a IPPNT value of E which is also the default. If interest payment occurs at the beginning of the cycle, the value is B."
     },
     "cyclePointOfRateReset": {
@@ -979,7 +979,7 @@
           "description": "The new rate is applied at the end of the reset period."
         }
       ],
-      "default": "B",
+      "default": "beginning",
       "description": "Normally rates get reset at the beginning of any resetting cycles. There are contracts where the rate is not set at the beginning but at the end of the cycle and then applied to the previous cycle (post-fixing); in other words the rate applies before it is fixed. Hence, the new rate is not known during the entire cycle where it applies. Therefore, the rate will be applied backwards at the end of the cycle. This happens through a correction of interest accrued."
     },
     "dayCountConvention": {
@@ -1081,7 +1081,7 @@
           "description": "The underlying is delivered physically."
         }
       ],
-      "default": "D",
+      "default": "physicalSettlement",
       "description": "Indicates whether the contract is settled in cash or physical delivery.\nIn case of physical delivery, the underlying contract and associated (future) cash flows are effectively exchanged. In case of cash settlement, the current market value of the underlying contract determines the cash flow exchanged."
     },
     "endOfMonthConvention": {
@@ -1106,7 +1106,7 @@
           "description": "Schedule times fall on the end of every month if the anchor date represents the last day of the respective month."
         }
       ],
-      "default": "sd",
+      "default": "sameDay",
       "description": "When computing schedules a special problem arises if an anchor date is at the end of a month and a cycle of monthly or quarterly is applied (yearly in the case of leap years only). How do we have to interpret an anchor date April 30 plus 1M cycles? In case where EOM is selected, it will jump to the 31st of May, then June 30, July 31 and so on. If SM is selected, it will jump to the 30st always with of course an exception in February. \nThis logic applies for all months having 30 or less days and an anchor date at the last day. Month with 31 days will at any rate jump to the last of the month if anchor date is on the last day."
     },
     "exDividendDate": {
@@ -1287,7 +1287,7 @@
       "allowedValues": [
         {
           "option": "0",
-          "identifier": "notioalOutstanding",
+          "identifier": "notionalOutstanding",
           "name": "Notional Outstanding",
           "acronym": "NT",
           "description": "Interest accrues on the basis of the notional outstanding."
@@ -1307,7 +1307,7 @@
           "description": "Interest accrues on the basis of the lagged notional outstanding."
         }
       ],
-      "default": "NT",
+      "default": "notionalOutstanding",
       "description": "This is important for amortizing instruments. The basis of interest calculation is normally the notional outstanding amount as per SD. This is considered the fair basis and in many countries the only legal basis. If NULL or NTSD is selected, this is the case. \nAlternative bases (normally in order to favor the lending institution) are found. In the extreme case the original balance (PCDD=NT+PDCDD) never gets adjusted. In this case PCDD must be chosen. \nAn intermediate case exist wherre balances do get adjusted, however with lags. In this case NTL mut be selected and anchor dates and cycles must be set."
     },
     "interestCalculationBaseAmount": {
@@ -1688,7 +1688,7 @@
           "description": "A penalty based on the current interest rate differential relative to the notional outstanding applies."
         }
       ],
-      "default": "O",
+      "default": "noPenalty",
       "description": "Defines whether prepayment is linked to a penalty and of which kind."
     },
     "periodCap": {
@@ -1754,7 +1754,7 @@
           "description": "Prepayment is allowed and reduces the maturity."
         }
       ],
-      "default": "N",
+      "default": "noPrepayment",
       "description": "This attribute defines whether or not the right of prepayment exists and if yes, how prepayment affects the remaining principal redemption schedule of the contract"
     },
     "prepaymentPeriod": {
@@ -1869,7 +1869,7 @@
           "description": "Scaling applies to interest and principal."
         }
       ],
-      "default": "000\n",
+      "default": "noScaling",
       "description": "Indicates which payments are scaled. I = Interest payments, N = Nominal payments and M = Maximum deferred interest amount. They can be scaled in any combination."
     },
     "scalingIndexAtContractDealDate": {

@@ -363,7 +363,17 @@ offset, to timezone offsets.
   Group: #text(term.group)
 
   #if (term.default != "") [
-    Default value: #text(term.default)
+    Default value:
+    #if (term.type == "Enum") {
+      link(
+        label("term_" + term.identifier + "_allowed_value_" + term.default),
+        raw(
+          term.allowedValues.find(allowed_value => allowed_value.identifier == term.default).acronym,
+        ),
+      )
+    } else {
+      raw(term.default)
+    }
   ]
 
   #text(term.description)
