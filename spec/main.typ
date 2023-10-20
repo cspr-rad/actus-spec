@@ -12,7 +12,7 @@ test itself. We also provide a test harness that any implementor can use to test
 their implementation against arbitrary test cases.
 
 #let todo(str) = box({
-  text(blue, "TODO: ")
+  text("TODO: ", blue)
   text(str)
 })
 #let citation_needed = todo("[CITATION NEEDED]")
@@ -95,21 +95,59 @@ offset, to timezone offsets.
 )
 
 == Contract concepts
+=== Terms
 === Events
 === Schedules
 === State
+
+== Terms
+
+#let terms = dictionary.at("terms")
+#for term in terms.values() [
+  === #text(term.name) (#raw(term.acronym)) #label("term_" + term.identifier)
+  #text(term.description)
+
+  Type: #text(term.type)
+  #if (term.type == "Real") [
+    #todo(
+      "Real numbers don't exist in computers. We need to change this type. Most likely to an amount of money.",
+    )
+  ]
+  #if (term.type == "Enum") [
+    ==== Allowed values:
+    #for allowed_value in term.allowedValues [
+      - #raw(allowed_value.acronym) (#text(allowed_value.name)) #label(
+          "term_" + term.identifier + "_allowed_value_" + allowed_value.identifier,
+        )
+
+        #text(allowed_value.description)
+
+    ]
+  ]
+]
+
+#let make_term_label(identifier) = {
+  let term = terms.at(identifier)
+  [ #link(
+      label("term_" + term.identifier),
+      [ #raw(term.acronym) (#text(term.name)) ],
+    ) ]
+}
 
 == Events
 
 #let events = dictionary.at("events")
 #for event in events.values() [
-  === #text(event.name) (#raw(event.acronym)) #label(event.identifier)
+  === #text(event.name) (#raw(event.acronym)) #label("event_" + event.identifier)
   #text(event.description)
 ]
 
 #let make_event_label(identifier) = {
   let event = events.at(identifier)
-  [ #link(label(event.identifier), [ #raw(event.acronym) (#text(event.name)) ]) ]
+  [ #link(
+      label("event_" + event.identifier),
+      [ #raw(event.acronym) (#text(event.name)) ],
+    ) ]
 }
 
 #todo(
@@ -143,7 +181,7 @@ offset, to timezone offsets.
 
 #let state_variables = dictionary.at("state-variables")
 #for state_variable in state_variables.values() [
-  === #text(state_variable.name) (#raw(state_variable.acronym)) #label(state_variable.identifier)
+  === #text(state_variable.name) (#raw(state_variable.acronym)) #label("state_variable_" + state_variable.identifier)
 
   #text(state_variable.description)
 
@@ -156,7 +194,9 @@ offset, to timezone offsets.
   #if (state_variable.type == "Enum") [
     ==== Allowed values:
     #for allowed_value in state_variable.allowedValues [
-      - #raw(allowed_value.acronym) (#text(allowed_value.name)) #label(allowed_value.identifier)
+      - #raw(allowed_value.acronym) (#text(allowed_value.name)) #label(
+          "state_variable_" + state_variable.identifier + "_allowed_value_" + allowed_value.identifier,
+        )
 
         #text(allowed_value.description)
 
@@ -167,7 +207,7 @@ offset, to timezone offsets.
 #let make_state_variable_label(identifier) = {
   let state_variable = state_variables.at(identifier)
   [ #link(
-      label(state_variable.identifier),
+      label("state_variable_" + state_variable.identifier),
       [ #raw(state_variable.acronym) (#text(state_variable.name)) ],
     ) ]
 }
