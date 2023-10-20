@@ -277,7 +277,17 @@ adhere to the specification. In particular, this specification aims to describe
 exactly how implementations must behave when precision is lost due to the
 reality of working in a finite amount of time and space.
 
-==== Amounts of money
+==== Enum <type_Enum>
+
+When a value is of an enum type, the allowed values are specified.
+
+==== Real <type_Real>
+
+#todo(
+  "Real numbers don't exist in computers. We must get rid of this section.",
+)
+
+==== Amounts of money <Amount>
 
 For each currency, a minimal quantisation must be defined. For example, the
 minimal quantisation of USD may be defined as 1 cent.
@@ -330,6 +340,12 @@ offset, to timezone offsets.
   "Refer to the timezone database to describe how this mapping works in practice",
 )
 
+==== Timestamp <type_Timestamp>
+
+#todo(
+  "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
+)
+
 == Contract concepts
 === Terms
 === Events
@@ -375,7 +391,7 @@ offset, to timezone offsets.
 
   #text(state_variable.description)
 
-  Type: #text(state_variable.type)
+  Type: #link(label("type_" + state_variable.type), state_variable.type)
   #if (state_variable.type == "Real") [
     #todo(
       "Real numbers don't exist in computers. We need to change this type. Most likely to an amount of money.",
