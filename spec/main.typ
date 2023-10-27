@@ -273,7 +273,10 @@ their implementation against arbitrary test cases.
 #show "should": raw("SHOULD")
 #show "should not": raw("SHOULD NOT")
 
-should, should not, must, must not, ... #todo("refer to that rfc")
+should, should not, must, must not, ... #todo("refer to that rfc") The key words
+must, must not, required, shall, shall not, should, should not, recommended,
+may, and optional in this document are to be interpreted as described in [RFC
+2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 == Data Types
 
@@ -298,7 +301,7 @@ When a value is of an enum type, the allowed values are specified.
   "Real numbers don't exist in computers. We must get rid of this section.",
 )
 
-=== Amounts of money <Amount>
+=== Currency <Currency>
 
 For each currency, a minimal quantisation must be defined. For example, the
 minimal quantisation of USD may be defined as 1 cent.
@@ -306,6 +309,8 @@ minimal quantisation of USD may be defined as 1 cent.
 The quantisation factor is defined as the number of minimal quantisations that
 represent one unit of the currency. For example, The quantisation factor of USD
 is then 100, because 100 cents equals one USD.
+
+=== Amounts of money <Amount>
 
 Amounts of money must be represented as an integral amount of a given minimal
 quantisation of its currency. (An amount of money must_not be represented as a
