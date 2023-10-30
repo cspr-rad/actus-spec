@@ -278,30 +278,37 @@ must, must not, required, shall, shall not, should, should not, recommended,
 may, and optional in this document are to be interpreted as described in [RFC
 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
-== Data Types
+== MIME
+
+The ACTUS interchange format is suitable as an exchange format between
+applications or systems. The format is defined in terms of the MIME content
+types: `application/actus+json` or `application/actus+cbor`.
+
+= Data Types
 
 While the original ACTUS specification describes contract schedules using
 mathematical notation and, in particular, real numbers, we want to take a more
 practical and exact approach. Describing numbers or even amounts of money as
 real numbers is not helpful for implementors. Indeed, real numbers cannot be
-represented in computers. Even representing fractiol numbers has its issues #citation_needed.
+represented in computers. Even representing fractional numbers has its issues
+#citation_needed.
 
 We will therefore specify the exact data types that implementations can use to
 adhere to the specification. In particular, this specification aims to describe
 exactly how implementations must behave when precision is lost due to the
 reality of working in a finite amount of time and space.
 
-=== Enum <type_Enum>
+== Enum <type_Enum>
 
 When a value is of an enum type, the allowed values are specified.
 
-=== Real <type_Real>
+== Real <type_Real>
 
 #todo(
   "Real numbers don't exist in computers. We must get rid of this section.",
 )
 
-=== Currency <Currency>
+== Currency <Currency>
 
 For each currency, a minimal quantisation must be defined. For example, the
 minimal quantisation of USD may be defined as 1 cent.
@@ -310,7 +317,7 @@ The quantisation factor is defined as the number of minimal quantisations that
 represent one unit of the currency. For example, The quantisation factor of USD
 is then 100, because 100 cents equals one USD.
 
-=== Amounts of money <Amount>
+== Amounts of money <Amount>
 
 Amounts of money must be represented as an integral amount of a given minimal
 quantisation of its currency. (An amount of money must_not be represented as a
@@ -326,12 +333,12 @@ to be 100.
   "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
 )
 
-=== Day
+== Day
 
 A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
 
-=== Time of day
+== Time of day
 
 A time of day is represented as an integral number of microseconds since the
 start of the day.
@@ -339,16 +346,16 @@ start of the day.
   "Figure out if that's too much precision. Maybe we don't care about sub-second timing.",
 )
 
-=== Local datetime
+== Local datetime
 
 A datetime is a tuple of a day and a time of day.
 
-=== Timezone offset
+== Timezone offset
 
 A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
 Note that a timezone offset is only valid within a timezone at a given time
 
-=== Timezone
+== Timezone
 
 A timezone, in theory, is a function from local datetimes without timezone
 offset, to timezone offsets.
@@ -356,7 +363,7 @@ offset, to timezone offsets.
   "Refer to the timezone database to describe how this mapping works in practice",
 )
 
-=== Timestamp <type_Timestamp>
+== Timestamp <type_Timestamp>
 
 #todo(
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
