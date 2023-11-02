@@ -284,6 +284,14 @@ The ACTUS interchange format is suitable as an exchange format between
 applications or systems. The format is defined in terms of the MIME content
 types: `application/actus+json` or `application/actus+cbor`.
 
+#let examples(filename) = {
+  let file = "test-data/" + filename + ".json"
+  heading("Examples:", level: 3)
+  text("See ")
+  raw(file)
+  list(..json(file).map(example => raw(json.encode(example, pretty: false))))
+}
+
 = Data Types
 
 While the original ACTUS specification describes contract schedules using
@@ -304,49 +312,44 @@ When a value is of an enum type, the allowed values are specified.
 
 Unrecognised values must be rejected.
 
+== Integer <type_Integer>
+
+An integer is an integer number. The integer is represented as a JSON number.
+Parsers should reject numbers with a decimal point and must reject numbers with
+any digits past the decimal point.
+
+#examples("integer")
+
+== Natural <type_Natural>
+
+A natural is a natural number. It is an integer (see @type_Integer) with the
+additional restriction that it must not be negative.
+
+#examples("natural")
+
+== Rational <type_Rational>
+
+A rational number is represented as a pair of integers (see @type_Integer).
+
+In JSON they are specified as a list of exactly two elements which are each
+Integers (see @type_Integer). The first is the numerator and the second the
+denominator. The denominator must not be zero and should not be negative.
+Rational numbers should be specified in normalised form.
+
+#examples("rational")
+
+== Positive Rational <type_PositiveRational>
+
+A positive rational number is a rational number (see @type_Rational) except
+instead of a pair of integers it is a pair of naturals (see @type_Natural).
+
+#examples("positive-rational")
+
 == Real <type_Real>
 
 #todo(
   "Real numbers don't exist in computers. We must get rid of this section.",
 )
-
-== Currency <Currency>
-
-For each currency, a minimal quantisation must be defined. For example, the
-minimal quantisation of USD may be defined as 1 cent.
-
-The quantisation factor is defined as the number of minimal quantisations that
-represent one unit of the currency. For example, The quantisation factor of USD
-is then 100, because 100 cents equals one USD.
-
-A currency may also have a symbol defined.
-
-#let examples(filename) = {
-  let file = "test-data/" + filename + ".json"
-  heading("Examples:", level: 3)
-  text("See ")
-  raw(file)
-  list(..json(file).map(example => raw(json.encode(example))))
-}
-#examples("currency")
-
-== Amounts of money <Amount>
-
-Amounts of money must be represented as an integral amount of a given minimal
-quantisation of its currency. (An amount of money must_not be represented as a
-floating point number, or an arbitrary-precision rational number.) For example,
-one USD can be represented as `100` cents if the quantisation factor is chosen
-to be 100.
-
-#todo(
-  "Specify i64 vs i128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
-)
-
-#todo(
-  "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
-)
-
-#examples("amount")
 
 == Day
 
@@ -366,7 +369,7 @@ start of the day.
 
 #examples("time-of-day")
 
-== Local date time
+== Local datetime <type_LocalDatetime>
 
 A datetime is a tuple of a day and a time of day.
 
@@ -389,9 +392,48 @@ offset, to timezone offsets.
 
 == Timestamp <type_Timestamp>
 
+A timestamp is a local datetime in the UTC timezone. See @type_LocalDatetime
 #todo(
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
 )
+
+== Currency <Currency>
+
+For each currency, a minimal quantisation must be defined. For example, the
+minimal quantisation of USD may be defined as 1 cent.
+
+The quantisation factor is defined as the number of minimal quantisations that
+represent one unit of the currency. For example, The quantisation factor of USD
+is then 100, because 100 cents equals one USD.
+
+A currency may also have a symbol defined.
+
+#examples("currency")
+
+== Amount of money <type_Amount>
+
+Amounts of money must be represented as an integral amount of a given minimal
+quantisation of its currency. (An amount of money must_not be represented as a
+floating point number, or an arbitrary-precision rational number.) For example,
+one USD can be represented as `100` cents if the quantisation factor is chosen
+to be 100.
+
+#todo(
+  "Specify i64 vs i128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
+)
+
+#todo(
+  "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
+)
+
+#examples("amount")
+
+== Positive amount of money <type_PositiveAmount>
+
+A positive amount of money is an amount of money (see @type_Amount) with the
+additional restriction that it must not be negative.
+
+#examples("positive-amount")
 
 == Contract concepts
 === Terms
@@ -524,6 +566,75 @@ offset, to timezone offsets.
     - #MD
     - #NT
     - #IPNR
+
+    #todo("I have no idea if this is correct:")
+
+    Allowed terms:
+    - Mandatory: #CT
+    - Mandatory: #SD
+    - Mandatory: #CNTRL
+    - Mandatory: #CRID
+    - Mandatory: #CID
+    - Optional: #CID
+    - Mandatory: #CPID
+    - Optional: #PRF
+    - Optional: #SEN
+    - Optional: #NPD
+    - Optional: #PPP
+    - Optional: #GRP
+    - Optional: #DQP
+    - Optional: #DQR
+    - Optional: #FEANX
+    - Optional: #FECL
+    - Optional: #FEB
+    - Optional: #FER
+    - Optional: #FEAC
+    - Optional: #IPANX
+    - Optional: #IPCL
+    - Mandatory: #IPNR
+    - Mandatory: #IPDC
+    - Optional: #IPAC
+    - Optional: #IPCED
+    - Optional: #IPPNT
+    - Mandatory: #CUR
+    - Mandatory: #CDD
+    - Mandatory: #IED
+    - Optional: #PDIED
+    - Mandatory: #MD
+    - Mandatory: #NT
+    - Optional: #PRD
+    - Mandatory: #PPRD
+    - Optional: #TD
+    - Mandatory: #PTD
+    - Optional: #CLA
+    - Mandatory: #SCMO
+    - Mandatory: #SCCDD
+    - Mandatory: #SCNT
+    - Mandatory: #SCIP
+    - Optional: #SCANX
+    - Optional: #SCCL
+    - Optional: #SCEF
+    - Optional: #MVO
+    - Optional: #OPXED
+    - Optional: #OPANX
+    - Optional: #OPCL
+    - Optional: #PYTP
+    - Optional: #PYRT
+    - Optional: #PPEF
+    - Optional: #RRANX
+    - Optional: #RRCL
+    - Mandatory: #RRSP
+    - Mandatory: #RRMO
+    - Optional: #RRLC
+    - Optional: #RRLF
+    - Optional: #RRPC
+    - Optional: #RRPF
+    - Optional: #RRPF
+    - Optional: #RRPNT
+    - Optional: #RRFIX
+    - Optional: #RRNXT
+    - Optional: #RRMLT
+    - Optional: #CURS
 
   ] else [
     #todo("Allowed events")

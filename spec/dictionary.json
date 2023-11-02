@@ -1052,10 +1052,8 @@
       "group": "Counterparty",
       "name": "Delinquency Rate",
       "acronym": "DQR",
-      "type": "Real",
-      "allowedValues": [
-        "Positive"
-      ],
+      "type": "PositiveRational",
+      "allowedValues": [],
       "default": "0",
       "description": "Rate at which Delinquency Payments accrue on NT (in addition to the interest rate) during the DelinquencyPeriod"
     },
@@ -2391,7 +2389,7 @@
       "name": "Notional Principal",
       "acronym": "NT",
       "description": "The outstanding nominal value",
-      "type": "Real",
+      "type": "PositiveAmount",
       "allowedValues": []
     },
     "notionalPrincipal2": {
@@ -2399,7 +2397,7 @@
       "name": "Notional Principal 2",
       "acronym": "NT2",
       "description": "The outstanding nominal value of the second leg",
-      "type": "Real",
+      "type": "PositiveAmount",
       "allowedValues": []
     },
     "notionalScalingMultiplier": {
