@@ -410,13 +410,13 @@ A currency may also have a symbol defined.
 
 #examples("currency")
 
-== Amount of money <type_Amount>
+== Positive amount of money <type_Amount>
 
-Amounts of money must be represented as an integral amount of a given minimal
-quantisation of its currency. (An amount of money must_not be represented as a
-floating point number, or an arbitrary-precision rational number.) For example,
-one USD can be represented as `100` cents if the quantisation factor is chosen
-to be 100.
+Amounts of money must be represented as a positive integral number of a given
+minimal quantisations of its currency. (An amount of money must not be
+represented as a floating point number, or an arbitrary-precision rational
+number.) For example, one USD can be represented as `100` cents if the
+quantisation factor is chosen to be 100.
 
 #todo(
   "Specify i64 vs i128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
@@ -428,12 +428,12 @@ to be 100.
 
 #examples("amount")
 
-== Positive amount of money <type_PositiveAmount>
+== Account of money <type_Account>
 
-A positive amount of money is an amount of money (see @type_Amount) with the
-additional restriction that it must not be negative.
+An account of money is like an amount of money (see @type_Amount) but without
+the restriction that it must be positive.
 
-#examples("positive-amount")
+#examples("account")
 
 == Contract concepts
 === Terms
