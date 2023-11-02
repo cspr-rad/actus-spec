@@ -1,0 +1,18 @@
+[
+  {
+    "symbol": "USD",
+    "factor": 100
+  },
+  {
+    "symbol": "CHF",
+    "factor": 20
+  },
+  {
+    "symbol": "INR",
+    "factor": 20
+  },
+  {
+    "symbol": "BTC",
+    "factor": 100000000
+  }
+]

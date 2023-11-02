@@ -302,6 +302,8 @@ reality of working in a finite amount of time and space.
 
 When a value is of an enum type, the allowed values are specified.
 
+Unrecognised values must be rejected.
+
 == Real <type_Real>
 
 #todo(
@@ -316,6 +318,17 @@ minimal quantisation of USD may be defined as 1 cent.
 The quantisation factor is defined as the number of minimal quantisations that
 represent one unit of the currency. For example, The quantisation factor of USD
 is then 100, because 100 cents equals one USD.
+
+A currency may also have a symbol defined.
+
+#let examples(filename) = {
+  let file = "test-data/" + filename + ".json"
+  heading("Examples:", level: 3)
+  text("See ")
+  raw(file)
+  list(..json(file).map(example => raw(json.encode(example))))
+}
+#examples("currency")
 
 == Amounts of money <Amount>
 
@@ -333,10 +346,15 @@ to be 100.
   "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
 )
 
+#examples("amount")
+
 == Day
 
 A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
+}
+
+#examples("day")
 
 == Time of day
 
@@ -346,14 +364,20 @@ start of the day.
   "Figure out if that's too much precision. Maybe we don't care about sub-second timing.",
 )
 
-== Local datetime
+#examples("time-of-day")
+
+== Local date time
 
 A datetime is a tuple of a day and a time of day.
+
+#examples("local-date-time")
 
 == Timezone offset
 
 A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
 Note that a timezone offset is only valid within a timezone at a given time
+
+#examples("time-zone-offset")
 
 == Timezone
 
