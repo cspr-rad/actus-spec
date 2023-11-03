@@ -1,10 +1,11 @@
 [
   {
     "symbol": "USD",
+    "uid": "USD",
     "factor": 100
   },
   {
-    "symbol": "CHF",
+    "uid": "CHF",
     "factor": 20
   },
   {

@@ -1,0 +1,16 @@
+[
+  {
+    "currency": "USD"
+  },
+  {
+    "amount": 15
+  },
+  {
+    "currency": "CHF",
+    "amount": 20.5
+  },
+  {
+    "currency": "INR",
+    "amount": -20
+  }
+]

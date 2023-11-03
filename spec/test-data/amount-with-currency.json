@@ -1,0 +1,14 @@
+[
+  {
+    "currency": "USD",
+    "amount": 5
+  },
+  {
+    "currency": "BTC",
+    "amount": 15
+  },
+  {
+    "currency": "CHF",
+    "amount": 20
+  }
+]

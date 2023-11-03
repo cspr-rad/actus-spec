@@ -284,6 +284,10 @@ The ACTUS interchange format is suitable as an exchange format between
 applications or systems. The format is defined in terms of the MIME content
 types: `application/actus+json` or `application/actus+cbor`.
 
+#todo(
+  "define encoding: UTF-8? Maybe not necessary because json is ascii? Maybe still necessary because cbor is not?",
+)
+
 #let examples(filename) = {
   heading("Examples:", level: 3)
 
@@ -451,8 +455,12 @@ with non-zero decimals must be rejected.
 
 == Currency <type_Currency>
 
-A currency must specify its quantisation factor. A currency may also have a
-symbol defined.
+A currency must specify its quantisation factor (#raw("factor")). A currency
+must specify either a unique identifier (#raw("uid")) or a symbol (#raw("symbol")).
+A currency that has a unique identifier may also specify a symbol. The symbol of
+a currency that specifies a symbol but not a unique identifier must be unique
+within one `application/actus+json` or `application/actus+cbor` file. In such a
+case the symbol is used as the unique identifier.
 
 This specification does not define how amounts of money are presented to users.
 Many different ways of doing so are in use already, so this specification allows
@@ -487,11 +495,42 @@ the restriction that it must be positive.
 
 #examples("account")
 
-== Contract concepts
+== Amount with currency <type_AccountWithCurrency>
+
+An amount with currency is an amount (#raw("amount")) (see @type_Amount)
+specified with a unique identifier of a currency (#raw("currency")) (see
+@type_Currency). Any currency refered to in the #raw("currency") field of an
+amount with currency must have been defined in the same file.
+
+#examples("amount-with-currency")
+
+== Account with currency <type_AccountWithCurrency>
+
+An account with currency is an account (#raw("account")) (see @type_Account)
+specified with a unique identifier of a currency (#raw("currency")) (see
+@type_Currency). Any currency refered to in the #raw("currency") field of an
+account with currency must have been defined in the same file.
+
+#examples("account-with-currency")
+
+== Contract <type_Contract>
 === Terms
 === Events
 === Schedules
 === State
+
+== ACTUS file
+
+An actus file defines a collection of currencies (#raw("currencies")) (see
+@type_Currency)) and ACTUS contracts (#raw("contracts")) (see @type_Contract).
+
+#todo("examples")
+
+== Cashflows
+
+#todo(
+  "Define an exact format for the results of computing results of actus contracts",
+)
 
 = Terms
 

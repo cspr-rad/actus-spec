@@ -1,0 +1,12 @@
+[
+  {
+    "currency": "INR"
+  },
+  {
+    "amount": 30
+  },
+  {
+    "currency": "CHF",
+    "amount": 40.6
+  }
+]

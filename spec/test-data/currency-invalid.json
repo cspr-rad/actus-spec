@@ -4,7 +4,10 @@
     "factor": 100.0
   },
   {
-    "symbol": "USD"
+    "factor": 20
+  },
+  {
+    "symbol": "INR"
   },
   {
     "symbol": "BTC",
