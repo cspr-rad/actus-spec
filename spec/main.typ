@@ -285,11 +285,20 @@ applications or systems. The format is defined in terms of the MIME content
 types: `application/actus+json` or `application/actus+cbor`.
 
 #let examples(filename) = {
-  let file = "test-data/" + filename + ".json"
   heading("Examples:", level: 3)
-  text("See ")
-  raw(file)
-  list(..json(file).map(example => raw(json.encode(example, pretty: false))))
+  text("The following values must parse. See ")
+  let validfile = "test-data/" + filename + ".json"
+  raw(validfile)
+  list(
+    ..json(validfile).map(example => raw(json.encode(example, pretty: false))),
+  )
+  heading("Must not parse:", level: 4)
+  text("The following values must not parse. See ")
+  let invalidfile = "test-data/" + filename + "-invalid.json"
+  raw(invalidfile)
+  list(
+    ..json(invalidfile).map(example => raw(json.encode(example, pretty: false))),
+  )
 }
 
 = Data Types
@@ -404,7 +413,8 @@ minimal quantisation of USD may be defined as 1 cent.
 
 The quantisation factor is defined as the number of minimal quantisations that
 represent one unit of the currency. For example, The quantisation factor of USD
-is then 100, because 100 cents equals one USD.
+is then 100, because 100 cents equals one USD. A quantisation factor must be a
+natural number (see @type_Natural).
 
 A currency may also have a symbol defined.
 

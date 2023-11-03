@@ -1,0 +1,13 @@
+[
+  {
+    "symbol": "USD",
+    "factor": 100.0
+  },
+  {
+    "symbol": "USD"
+  },
+  {
+    "symbol": "BTC",
+    "factor": -100000000
+  }
+]
