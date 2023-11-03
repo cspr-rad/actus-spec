@@ -286,19 +286,23 @@ types: `application/actus+json` or `application/actus+cbor`.
 
 #let examples(filename) = {
   heading("Examples:", level: 3)
-  text("The following values must parse. See ")
+
+  text("The following values must parse.")
   let validfile = "test-data/" + filename + ".json"
-  raw(validfile)
   list(
     ..json(validfile).map(example => raw(json.encode(example, pretty: false))),
   )
-  heading("Must not parse:", level: 4)
-  text("The following values must not parse. See ")
+  text("See ")
+  raw(validfile)
+  text("\n\n") // TODO figure out how to do a hard line break
+
+  text("The following values must not parse.")
   let invalidfile = "test-data/" + filename + "-invalid.json"
-  raw(invalidfile)
   list(
     ..json(invalidfile).map(example => raw(json.encode(example, pretty: false))),
   )
+  text("See ")
+  raw(invalidfile)
 }
 
 = Data Types
@@ -327,12 +331,16 @@ An integer is an integer number. The integer is represented as a JSON number.
 Parsers should reject numbers with a decimal point and must reject numbers with
 any digits past the decimal point.
 
+Integers must have no range restriction.
+
 #examples("integer")
 
 == Natural <type_Natural>
 
 A natural is a natural number. It is an integer (see @type_Integer) with the
 additional restriction that it must not be negative.
+
+Naturals must have no range restriction.
 
 #examples("natural")
 
@@ -345,12 +353,16 @@ Integers (see @type_Integer). The first is the numerator and the second the
 denominator. The denominator must not be zero and should not be negative.
 Rational numbers should be specified in normalised form.
 
+The integers that make up a rational must have no range restriction.
+
 #examples("rational")
 
 == Positive Rational <type_PositiveRational>
 
 A positive rational number is a rational number (see @type_Rational) except
 instead of a pair of integers it is a pair of naturals (see @type_Natural).
+
+The naturals that make up a positive rational must have no range restriction.
 
 #examples("positive-rational")
 
@@ -366,6 +378,9 @@ A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
 }
 
+A time of day is specified using #todo("refer to ISO standard for date formatting").
+In simple terms, the format is #raw("YYYY-MM-DD").
+
 #examples("day")
 
 == Time of day
@@ -373,8 +388,11 @@ A day is represented as an unsigned integral number of days since 1970-01-01.
 A time of day is represented as an integral number of microseconds since the
 start of the day.
 #todo(
-  "Figure out if that's too much precision. Maybe we don't care about sub-second timing.",
+  "Figure out if that's too much precision. We probably don't care about sub-second timing.",
 )
+
+A time of day is specified using #todo("refer to ISO standard for date formatting").
+In simple terms, the format is #raw("HH:MM:SS").
 
 #examples("time-of-day")
 
@@ -382,12 +400,18 @@ start of the day.
 
 A datetime is a tuple of a day and a time of day.
 
+A time of day is specified using #todo("refer to ISO standard for date formatting").
+In simple terms, the format is #raw("YYYY-MM-DD HH:MM:SS").
+
 #examples("local-date-time")
 
 == Timezone offset
 
 A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
 Note that a timezone offset is only valid within a timezone at a given time
+
+A time of day is specified using #todo("refer to ISO standard for date formatting").
+In simple terms, the format is #raw("[+-]HH:MM").
 
 #examples("time-zone-offset")
 
@@ -406,17 +430,35 @@ A timestamp is a local datetime in the UTC timezone. See @type_LocalDatetime
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
 )
 
-== Currency <Currency>
+== Quantisation factor <type_QuantisationFactor>
 
 For each currency, a minimal quantisation must be defined. For example, the
 minimal quantisation of USD may be defined as 1 cent.
 
 The quantisation factor is defined as the number of minimal quantisations that
 represent one unit of the currency. For example, The quantisation factor of USD
-is then 100, because 100 cents equals one USD. A quantisation factor must be a
-natural number (see @type_Natural).
+is then 100, because 100 cents equals one USD.
 
-A currency may also have a symbol defined.
+A quantisation factor must be positive integral number but must not have a range
+greater than 32 bits ([0 .. 2^32]) and must not be zero.
+
+Numbers specified with a decimal point should be rejected. Numbers specified
+with non-zero decimals must be rejected.
+
+#todo("Use math notation for the range.")
+
+#examples("quantisation-factor")
+
+== Currency <type_Currency>
+
+A currency must specify its quantisation factor. A currency may also have a
+symbol defined.
+
+This specification does not define how amounts of money are presented to users.
+Many different ways of doing so are in use already, so this specification allows
+the currency object to contain info about this. In order for that to not break
+any other implementation's parsing, unrecognised fields in the currency object
+must be ignored.
 
 #examples("currency")
 
