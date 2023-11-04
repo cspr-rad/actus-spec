@@ -389,10 +389,11 @@ In simple terms, the format is #raw("YYYY-MM-DD").
 
 == Time of day
 
-A time of day is represented as an integral number of microseconds since the
-start of the day.
+A time of day is represented as an unsined integral number of seconds since the
+start of the day. This number must be between $0$ and $86399$ ($24 dot 60 dot 60$).
+
 #todo(
-  "Figure out if that's too much precision. We probably don't care about sub-second timing.",
+  "Figure out if that's the right precision. We probably don't care about sub-second timing.",
 )
 
 A time of day is specified using #todo("refer to ISO standard for date formatting").
@@ -444,12 +445,10 @@ represent one unit of the currency. For example, The quantisation factor of USD
 is then 100, because 100 cents equals one USD.
 
 A quantisation factor must be positive integral number but must not have a range
-greater than 32 bits ([0 .. 2^32]) and must not be zero.
+greater than 32 bits ($[0 .. 2^32]$) and must not be zero.
 
 Numbers specified with a decimal point should be rejected. Numbers specified
 with non-zero decimals must be rejected.
-
-#todo("Use math notation for the range.")
 
 #examples("quantisation-factor")
 
@@ -478,12 +477,10 @@ represented as a floating point number, or an arbitrary-precision rational
 number.) For example, one USD can be represented as `100` cents if the
 quantisation factor is chosen to be 100.
 
-#todo(
-  "Specify i64 vs i128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
-)
+An amount must have a range of at least 64 bits ($[0 .. 2^64]$).
 
 #todo(
-  "Specify i64 vs u64: we probably want separate types for positive amounts and possibly-negative amounts.",
+  "Specify u64 vs u128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
 )
 
 #examples("amount")
@@ -492,6 +489,8 @@ quantisation factor is chosen to be 100.
 
 An account of money is like an amount of money (see @type_Amount) but without
 the restriction that it must be positive.
+
+An account must have a range of at least 65 bits ($[-2^64 .. 2^64]$).
 
 #examples("account")
 
