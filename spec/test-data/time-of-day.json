@@ -1,6 +1,18 @@
 [
-  "00:00:12",
-  "06:45:23",
-  "17:15:45",
-  "23:59:59"
+  {
+    "value": "00:00:12",
+    "explanation": "Twelve seconds past midnight"
+  },
+  {
+    "value": "06:45:23",
+    "explanation": "Twenty three seconds past fifteen to seven in the morning"
+  },
+  {
+    "value": "17:15:45",
+    "explanation": "Fortyfive seconds past fifteen past five in the evening"
+  },
+  {
+    "value": "23:59:59",
+    "explanation": "One second to midnight"
+  }
 ]

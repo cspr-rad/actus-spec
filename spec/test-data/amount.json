@@ -1,6 +1,18 @@
 [
-  0,
-  1,
-  100,
-  2147483647
+  {
+    "value": 0,
+    "explanation": "Zero amount"
+  },
+  {
+    "value": 1,
+    "explanation": "Amount with one minimal quantisation"
+  },
+  {
+    "value": 100,
+    "explanation": "Amount with 100 minimal quantisations; this could represent 1 USD."
+  },
+  {
+    "value": 2147483647,
+    "explanation": "Large amount"
+  }
 ]

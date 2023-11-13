@@ -1,5 +1,14 @@
 [
-  "2023-12-31 23:59",
-  "2024-01-01 00:00",
-  "2024-02-29 15:45"
+  {
+    "value": "2023-12-31 23:59:59",
+    "explanation": "One second to midnight"
+  },
+  {
+    "value": "2024-01-01 00:00:00",
+    "explanation": "Midnight on January first 2024"
+  },
+  {
+    "value": "2024-02-29 15:45:30",
+    "explanation": "Thirty seconds past quarter to four in the afternoon on February 29th of 2024"
+  }
 ]

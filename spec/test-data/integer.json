@@ -1,7 +1,22 @@
 [
-  -2147483649,
-  -1,
-  0,
-  1,
-  2147483649
+  {
+    "value": -2147483649,
+    "explanation": "Large negative value"
+  },
+  {
+    "value": -1,
+    "explanation": "Negative 1"
+  },
+  {
+    "value": 0,
+    "explanation": "Zero"
+  },
+  {
+    "value": 1,
+    "explanation": "Positive 1"
+  },
+  {
+    "value": 2147483649,
+    "explanation": "Large positive value"
+  }
 ]

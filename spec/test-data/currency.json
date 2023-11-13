@@ -1,19 +1,31 @@
 [
   {
-    "symbol": "USD",
-    "uid": "USD",
-    "factor": 100
+    "value": {
+      "symbol": "USD",
+      "uid": "USD",
+      "factor": 100
+    },
+    "explanation": "Currency with symbol _and_ uid, with minimal quantisation 0.01"
   },
   {
-    "uid": "CHF",
-    "factor": 20
+    "value": {
+      "uid": "CHF",
+      "factor": 20
+    },
+    "explanation": "Currency with only a uid, which will be used as its symbol, with minimal quantisation 0.05"
   },
   {
-    "symbol": "INR",
-    "factor": 20
+    "value": {
+      "symbol": "INR",
+      "factor": 1
+    },
+    "explanation": "Currency with only a symbol, which will be used as its uid, with minimal quantisation 1"
   },
   {
-    "symbol": "BTC",
-    "factor": 100000000
+    "value": {
+      "symbol": "BTC",
+      "factor": 100000000
+    },
+    "explanation": "A currency with a large quantisation factor such that the minimal quantisation is 0.00000001"
   }
 ]

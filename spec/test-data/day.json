@@ -1,5 +1,14 @@
 [
-  "2023-11-02",
-  "2024-02-29",
-  "2025-01-01"
+  {
+    "value": "2023-11-02",
+    "explanation": "November 2nd 2023"
+  },
+  {
+    "value": "2024-02-29",
+    "explanation": "February 29th 2024"
+  },
+  {
+    "value": "2025-01-01",
+    "explanation": "January 1st 2025"
+  }
 ]

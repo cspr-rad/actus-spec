@@ -1,6 +1,18 @@
 [
-  0,
-  -1,
-  100,
-  -2147483647
+  {
+    "value": 0,
+    "explanation": "Empty account"
+  },
+  {
+    "value": -1,
+    "explanation": "Account with negative amount"
+  },
+  {
+    "value": 100,
+    "explanation": "Account with positive amount"
+  },
+  {
+    "value": -2147483647,
+    "explanation": "Acount with a large (in absolute value) negative amount"
+  }
 ]

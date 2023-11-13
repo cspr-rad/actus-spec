@@ -1,18 +1,30 @@
 [
-  [
-    0,
-    1
-  ],
-  [
-    -1,
-    2
-  ],
-  [
-    2,
-    9
-  ],
-  [
-    -17,
-    100
-  ]
+  {
+    "value": [
+      0,
+      1
+    ],
+    "explanation": "Zero"
+  },
+  {
+    "value": [
+      -1,
+      2
+    ],
+    "explanation": "Negative one half"
+  },
+  {
+    "value": [
+      2,
+      9
+    ],
+    "explanation": "Two ninths"
+  },
+  {
+    "value": [
+      -17,
+      100
+    ],
+    "explanation": "Negative 17 hundredths"
+  }
 ]

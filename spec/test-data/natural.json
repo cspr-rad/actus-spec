@@ -1,5 +1,14 @@
 [
-  0,
-  1,
-  2147483649
+  {
+    "value": 0,
+    "explanation": "Zero"
+  },
+  {
+    "value": 1,
+    "explanation": "One"
+  },
+  {
+    "value": 2147483649,
+    "explanation": "Large positive value"
+  }
 ]

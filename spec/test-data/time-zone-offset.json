@@ -1,5 +1,14 @@
 [
-  60,
-  -60,
-  1440
+  {
+    "value": 60,
+    "explanation": "One hour ahead"
+  },
+  {
+    "value": -60,
+    "explanation": "One hour behind"
+  },
+  {
+    "value": 1440,
+    "explanation": "Twenty-four hours ahead"
+  }
 ]

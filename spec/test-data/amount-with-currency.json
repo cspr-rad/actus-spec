@@ -1,14 +1,23 @@
 [
   {
-    "currency": "USD",
-    "amount": 5
+    "value": {
+      "currency": "USD",
+      "amount": 5
+    },
+    "explanation": "5 minimal quantisations of the USD currency"
   },
   {
-    "currency": "BTC",
-    "amount": 15
+    "value": {
+      "currency": "BTC",
+      "amount": 15
+    },
+    "explanation": "15 minimal quantisations of the BTC currency"
   },
   {
-    "currency": "CHF",
-    "amount": 20
+    "value": {
+      "currency": "CHF",
+      "amount": 20
+    },
+    "explanation": "20 minimal quantisations of the BTC currency"
   }
 ]

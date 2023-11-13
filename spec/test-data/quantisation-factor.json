@@ -1,6 +1,18 @@
 [
-  1,
-  20,
-  100,
-  100000000
+  {
+    "value": 1,
+    "explanation": "A minimal quantisation of 1"
+  },
+  {
+    "value": 20,
+    "explanation": "A minimal quantisation of 0.05"
+  },
+  {
+    "value": 100,
+    "explanation": "A minimal quantisation of 0.01"
+  },
+  {
+    "value": 100000000,
+    "explanation": "A minimal quantisation of 0.00000001"
+  }
 ]
