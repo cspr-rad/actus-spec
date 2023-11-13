@@ -294,17 +294,19 @@ types: `application/actus+json` or `application/actus+cbor`.
   text("The following values must parse.")
   let validfile = "test-data/" + filename + ".json"
   list(..json(validfile).map(example => {
-    text(example.explanation + ":\n")
+    text(example.explanation + ":")
+    linebreak()
     raw(json.encode(example.value, pretty: false))
   }))
   text("See ")
   raw(validfile)
-  text("\n\n") // TODO figure out how to do a hard line break
+  linebreak()
 
   text("The following values must not parse.")
   let invalidfile = "test-data/" + filename + "-invalid.json"
   list(..json(validfile).map(example => {
-    text(example.explanation + ":\n")
+    text(example.explanation + ":")
+    linebreak()
     raw(json.encode(example.value, pretty: false))
   }))
   text("See ")
