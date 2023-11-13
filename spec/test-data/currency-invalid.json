@@ -1,16 +1,28 @@
 [
   {
-    "symbol": "USD",
-    "factor": 100.0
+    "value": {
+      "symbol": "USD",
+      "factor": 100.0
+    },
+    "explanation": "Non-integral quantisation factor"
   },
   {
-    "factor": 20
+    "value": {
+      "factor": 20
+    },
+    "explanation": "No symbol or uid"
   },
   {
-    "symbol": "INR"
+    "value": {
+      "symbol": "INR"
+    },
+    "explanation": "No quantisation factor"
   },
   {
-    "symbol": "BTC",
-    "factor": -100000000
+    "value": {
+      "symbol": "BTC",
+      "factor": -100000000
+    },
+    "explanation": "Negative quantisation factor"
   }
 ]

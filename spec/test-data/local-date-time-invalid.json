@@ -1,7 +1,26 @@
 [
-  "2023-12-31 24:00",
-  "2023-4-31 00:00",
-  "2024-01-01T00:00",
-  "20240229T1545",
-  "202212010600"
+  {
+    "value": "2023-12-31 24:00:00",
+    "explanation": "The 24th hour does not exist"
+  },
+  {
+    "value": "2023-4-31 00:00",
+    "explanation": "No zero-padding for the month"
+  },
+  {
+    "value": "2024-01-01T00:00:00",
+    "explanation": "A T instead of a space"
+  },
+  {
+    "value": "2024-01-01 00:00",
+    "explanation": "Missing seconds"
+  },
+  {
+    "value": "20240229T154500",
+    "explanation": "No dashes, but with a T"
+  },
+  {
+    "value": "20221201060000",
+    "explanation": "No dashes and no T"
+  }
 ]

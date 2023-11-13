@@ -1,12 +1,21 @@
 [
   {
-    "currency": "INR"
+    "value": {
+      "currency": "INR"
+    },
+    "explanation": "No account value"
   },
   {
-    "amount": 30
+    "value": {
+      "account": 30
+    },
+    "explanation": "No currency value"
   },
   {
-    "currency": "CHF",
-    "amount": 40.6
+    "value": {
+      "currency": "CHF",
+      "account": 40.6
+    },
+    "explanation": "Non-integral account value"
   }
 ]

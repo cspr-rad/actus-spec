@@ -1,7 +1,34 @@
 [
-  [
-    1,
-    0
-  ],
-  -17.5
+  {
+    "value": [
+      1,
+      0
+    ],
+    "explanation": "Zero denominator"
+  },
+  {
+    "value": [
+      -17.5,
+      1
+    ],
+    "explanation": "Non-integral numerator"
+  },
+  {
+    "value": [
+      1,
+      1.6
+    ],
+    "explanation": "Non-integral denominator"
+  },
+  {
+    "value": [
+      1,
+      -6
+    ],
+    "explanation": "Negative denominator"
+  },
+  {
+    "value": -17.5,
+    "explanation": "One number, not two"
+  }
 ]

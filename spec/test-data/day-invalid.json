@@ -1,5 +1,14 @@
 [
-  "20231102",
-  "2023-02-29",
-  "2023-11-31"
+  {
+    "value": "20231102",
+    "explanation": "No dashes"
+  },
+  {
+    "value": "2023-02-29",
+    "explanation": "29th of february on a non-leap year"
+  },
+  {
+    "value": "2023-11-31",
+    "explanation": "31st of november, which does not exist"
+  }
 ]

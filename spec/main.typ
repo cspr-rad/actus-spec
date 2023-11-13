@@ -303,9 +303,10 @@ types: `application/actus+json` or `application/actus+cbor`.
 
   text("The following values must not parse.")
   let invalidfile = "test-data/" + filename + "-invalid.json"
-  list(
-    ..json(invalidfile).map(example => raw(json.encode(example, pretty: false))),
-  )
+  list(..json(validfile).map(example => {
+    text(example.explanation + ":\n")
+    raw(json.encode(example.value, pretty: false))
+  }))
   text("See ")
   raw(invalidfile)
 }

@@ -1,6 +1,18 @@
 [
-  "1",
-  2.4,
-  -5,
-  null
+  {
+    "value": "1",
+    "explanation": "String value"
+  },
+  {
+    "value": 2.4,
+    "explanation": "Non-integral number"
+  },
+  {
+    "value": -5,
+    "explanation": "Negative number"
+  },
+  {
+    "value": null,
+    "explanation": "Null value"
+  }
 ]

@@ -1,7 +1,22 @@
 [
-  "060000",
-  "24:00:00",
-  "1:00:00",
-  "-5:00:00",
-  "05:00"
+  {
+    "value": "060000",
+    "explanation": "No columns"
+  },
+  {
+    "value": "24:00:00",
+    "explanation": "24th hour does not exist"
+  },
+  {
+    "value": "1:00:00",
+    "explanation": "No zero-padding for the hour"
+  },
+  {
+    "value": "-5:00:00",
+    "explanation": "Negative hours"
+  },
+  {
+    "value": "05:00",
+    "explanation": "No seconds"
+  }
 ]

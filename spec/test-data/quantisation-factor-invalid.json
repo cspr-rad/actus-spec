@@ -1,5 +1,14 @@
 [
-  0,
-  0.5,
-  -5
+  {
+    "value": 0,
+    "explanation": "Zero factor"
+  },
+  {
+    "value": 0.5,
+    "explanation": "Non-integral factor"
+  },
+  {
+    "value": -5,
+    "explanation": "Negative factor"
+  }
 ]

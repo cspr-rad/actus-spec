@@ -1,4 +1,10 @@
 [
-  "GMT",
-  5.0
+  {
+    "value": "GMT",
+    "explanation": "Named offset"
+  },
+  {
+    "value": 5.0,
+    "explanation": "Non-integral offset"
+  }
 ]

@@ -1,16 +1,28 @@
 [
   {
-    "currency": "USD"
+    "value": {
+      "currency": "USD"
+    },
+    "explanation": "No amount value"
   },
   {
-    "amount": 15
+    "value": {
+      "amount": 15
+    },
+    "explanation": "No currency value"
   },
   {
-    "currency": "CHF",
-    "amount": 20.5
+    "value": {
+      "currency": "CHF",
+      "amount": 20.5
+    },
+    "explanation": "Non-integral amount"
   },
   {
-    "currency": "INR",
-    "amount": -20
+    "value": {
+      "currency": "INR",
+      "amount": -20
+    },
+    "explanation": "Negative amount"
   }
 ]
