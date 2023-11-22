@@ -250,6 +250,8 @@
 #let UMP = make_contract_label("undefinedMaturityProfile")
 #let BNDWR = make_contract_label("warrant")
 
+#let applicability_map = dictionary.at("applicability")
+
 // Title page
 #page(align(center + horizon, text(30pt, "ACTUS Specification version 2")))
 #outline(title: auto, indent: auto)
@@ -634,6 +636,23 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   #text(contract.description)
 
   #todo("Relevant terms")
+
+  #let applicability = applicability_map.at(contract.identifier, default: ())
+
+  #if applicability.len() == 0 [
+    #todo("!! No applicability rules for this contract.")
+  ] else [
+    ==== Applicable terms
+    #for term in terms.values() [
+      #let rule = applicability.at(term.identifier, default: "")
+      #if rule != "" [
+        #let rule_description = if rule == "x" [ Optional ] else { if rule == "NN" [ Required ] else { text(rule) } }
+        - #link(label("term_" + term.identifier), text(term.name)): #text(rule_description)
+      ]
+    ]
+  ]
+
+  ==== Allowed events
 
   #todo("Put as much of this as possible into the .json files.")
   #todo(
