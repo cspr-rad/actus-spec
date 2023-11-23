@@ -197,24 +197,24 @@
   )
 }
 
-#let IPAC = make_state_variable_label("accruedInterest")
-#let IPAC2 = make_state_variable_label("accruedInterest2")
-#let PRF = make_state_variable_label("contractPerformance")
-#let XA = make_state_variable_label("exerciseAmount")
-#let XD = make_state_variable_label("exerciseDate")
-#let FEAC = make_state_variable_label("feeAccrued")
-#let ICBA = make_state_variable_label("interestCalculationBaseAmount")
-#let SCIP = make_state_variable_label("interestScalingMultiplier")
-#let MD = make_state_variable_label("maturityDate")
-#let PRNXT = make_state_variable_label("nextPrincipalRedemptionPayment")
-#let IPNR = make_state_variable_label("nominalInterestRate")
-#let IPNR2 = make_state_variable_label("nominalInterestRate2")
-#let NPD = make_state_variable_label("nonPerformingDate")
-#let NT = make_state_variable_label("notionalPrincipal")
-#let NT2 = make_state_variable_label("notionalPrincipal2")
-#let SCNT = make_state_variable_label("notionalScalingMultiplier")
-#let SD = make_state_variable_label("statusDate")
-#let TD = make_state_variable_label("terminationDate")
+#let Ipac = make_state_variable_label("accruedInterest")
+#let Ipac2 = make_state_variable_label("accruedInterest2")
+#let Prf = make_state_variable_label("contractPerformance")
+#let Xa = make_state_variable_label("exerciseAmount")
+#let Xd = make_state_variable_label("exerciseDate")
+#let Feac = make_state_variable_label("feeAccrued")
+#let Icba = make_state_variable_label("interestCalculationBaseAmount")
+#let Scip = make_state_variable_label("interestScalingMultiplier")
+#let Md = make_state_variable_label("maturityDate")
+#let Prnxt = make_state_variable_label("nextPrincipalRedemptionPayment")
+#let Ipnr = make_state_variable_label("nominalInterestRate")
+#let Ipnr2 = make_state_variable_label("nominalInterestRate2")
+#let Npd = make_state_variable_label("nonPerformingDate")
+#let Nt = make_state_variable_label("notionalPrincipal")
+#let Nt2 = make_state_variable_label("notionalPrincipal2")
+#let Scnt = make_state_variable_label("notionalScalingMultiplier")
+#let Sd = make_state_variable_label("statusDate")
+#let Td = make_state_variable_label("terminationDate")
 
 #let contracts = dictionary.at("taxonomy")
 
@@ -662,13 +662,7 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   ]
 
   ==== Allowed events
-
-  #todo("Put as much of this as possible into the .json files.")
-  #todo(
-    "We can probably put the required state variables and the variable initialisation in the same array.",
-  )
   #if (contract.acronym == "PAM") [
-    Allowed events:
     - #IED
     - #FP
     - #MD
@@ -683,15 +677,23 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
     - #RRF
     - #SC
     - #CE
-
-    Required state variables:
-    - #MD
-    - #NT
-    - #IPNR
-
   ] else [
     #todo("Allowed events")
+  ]
+  ==== Required State Variables
+  #if (contract.acronym == "PAM") [
+    ===== #Md
+    Initial value: value of the #MD contract attribute
 
+    ===== #Nt
+    If the contract's #IED is greater than $t_0$, then the initial value is $0.0$.
+    Otherwise the initial value is $R(#raw("CNTRL")) dot #raw("NT")$.
+
+    ===== #Ipnr
+    If the contract's #IED is greater than $t_0$, then the initial value is $0.0$.
+    Otherwise the initial value is the value of the #IPNR contract attribute.
+
+  ] else [
     #todo("Required state variables")
   ]
 
