@@ -282,6 +282,7 @@ their implementation against arbitrary test cases.
 #show "must not": raw("MUST NOT")
 #show "should": raw("SHOULD")
 #show "should not": raw("SHOULD NOT")
+#show "may": raw("MAY")
 
 The key words must, must not, required, shall, shall not, should, should not,
 recommended, may, and optional in this document are to be interpreted as
@@ -396,7 +397,6 @@ The naturals that make up a positive rational must have no range restriction.
 
 A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
-}
 
 A time of day is specified in the form #raw("YYYY-MM-DD").
 
@@ -406,10 +406,6 @@ A time of day is specified in the form #raw("YYYY-MM-DD").
 
 A time of day is represented as an unsigned integral number of seconds since the
 start of the day. This number must be between $0$ and $86399$ ($24 dot 60 dot 60$).
-
-#todo(
-  "Figure out if that's the right precision. We probably don't care about sub-second timing.",
-)
 
 A time of day is specified in the form #raw("HH:MM:SS").
 
@@ -425,7 +421,7 @@ A time of day is specified in the form #raw("YYYY-MM-DD HH:MM:SS").
 
 == Timezone offset
 
-A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
+A timezone offset is represented as an integral number of minutes away from GMT
 Note that a timezone offset is only valid within a timezone at a given time
 
 A time of day is specified in the form #raw("[+-]HH:MM").
@@ -489,11 +485,9 @@ represented as a floating point number, or an arbitrary-precision rational
 number.) For example, one USD can be represented as `100` cents if the
 quantisation factor is chosen to be 100.
 
-An amount must have a range of at least 64 bits ($[0 .. 2^64]$).
-
-#todo(
-  "Specify u64 vs u128. Are 128 bits necessary? Probably, if people choose their quantisation factor too large or we want to future-proof against inflation(?).",
-)
+An amount must have a range of at least 64 bits ($[0 .. 2^64]$) and may be
+specified using an unsigned 64-bit integer. For example, `u64` in Rust or
+`Word64` in Haskell.
 
 #examples("amount")
 
@@ -655,7 +649,7 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   #let applicability = applicability_map.at(contract.identifier, default: (:))
 
   #if applicability.len() == 0 [
-    #dict_todo("!! No applicability rules for this contract.")
+    #dict_todo("No applicability rules for this contract.")
   ] else [
     ==== Applicable terms
     #for term in terms.values() [
