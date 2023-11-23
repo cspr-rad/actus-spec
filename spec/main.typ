@@ -398,22 +398,20 @@ A day is represented as an unsigned integral number of days since 1970-01-01.
 #todo("Specify the minimum range for a datatype that is used.")
 }
 
-A time of day is specified using #todo("refer to ISO standard for date formatting").
-In simple terms, the format is #raw("YYYY-MM-DD").
+A time of day is specified in the form #raw("YYYY-MM-DD").
 
 #examples("day")
 
 == Time of day
 
-A time of day is represented as an unsined integral number of seconds since the
+A time of day is represented as an unsigned integral number of seconds since the
 start of the day. This number must be between $0$ and $86399$ ($24 dot 60 dot 60$).
 
 #todo(
   "Figure out if that's the right precision. We probably don't care about sub-second timing.",
 )
 
-A time of day is specified using #todo("refer to ISO standard for date formatting").
-In simple terms, the format is #raw("HH:MM:SS").
+A time of day is specified in the form #raw("HH:MM:SS").
 
 #examples("time-of-day")
 
@@ -421,8 +419,7 @@ In simple terms, the format is #raw("HH:MM:SS").
 
 A datetime is a tuple of a day and a time of day.
 
-A time of day is specified using #todo("refer to ISO standard for date formatting").
-In simple terms, the format is #raw("YYYY-MM-DD HH:MM:SS").
+A time of day is specified in the form #raw("YYYY-MM-DD HH:MM:SS").
 
 #examples("local-date-time")
 
@@ -431,8 +428,7 @@ In simple terms, the format is #raw("YYYY-MM-DD HH:MM:SS").
 A timezone offset is represented as an integral number of minutes away from UTC #todo("Double-check that it's UTC and not GMT?")
 Note that a timezone offset is only valid within a timezone at a given time
 
-A time of day is specified using #todo("refer to ISO standard for date formatting").
-In simple terms, the format is #raw("[+-]HH:MM").
+A time of day is specified in the form #raw("[+-]HH:MM").
 
 #examples("time-zone-offset")
 
