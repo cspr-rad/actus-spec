@@ -634,6 +634,10 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   === #text(contract.name) (#raw(contract.acronym))
   #label("contract_" + contract.identifier)
 
+  Status: #text(
+    contract.at("status", default: dict_todo("No status for this contract")),
+  )
+
   Coverage: #text(
     contract.at("coverage", default: dict_todo("No coverage for this contract")),
   )
