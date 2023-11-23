@@ -1,4 +1,309 @@
 {
+  "version": {
+    "Version": "1.3",
+    "Date": "2020-08-10"
+  },
+  "taxonomy": {
+    "annuity": {
+      "identifier": "annuity",
+      "name": "Annuity",
+      "acronym": "ANN",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Principal payment fully at IED and interest plus principal repaid periodically in constant amounts till MD. If variable rate, total amount for interest and principal is recalculated to be fully matured at MD.",
+      "coverage": "Classical level payment mortgages, leasing contracts etc.",
+      "status": "Released"
+    },
+    "callMoney": {
+      "identifier": "callMoney",
+      "name": "Call Money",
+      "acronym": "CLM",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Loans that are rolled over as long as they are not called. Once called it has to be paid back after the stipulated notice period.",
+      "coverage": "Interbank loans with call features.",
+      "status": "Released"
+    },
+    "capFloor": {
+      "identifier": "capFloor",
+      "name": "Cap Floors",
+      "acronym": "CAPFL",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "Interest rate option expressed in a maximum or minimum interest rate.",
+      "coverage": "Caps and Floor options.",
+      "status": "Implemented"
+    },
+    "cash": {
+      "identifier": "cash",
+      "name": "Cash",
+      "acronym": "CSH",
+      "family": "Basic",
+      "class": "Ownership",
+      "description": "Cash or cash equivalent position",
+      "coverage": "Cash, deposits at central bank.",
+      "status": "Released"
+    },
+    "collateral": {
+      "identifier": "collateral",
+      "name": "Collateral",
+      "acronym": "CEC",
+      "family": "Credit Enhancement",
+      "class": "Credit Enhancement",
+      "description": "Collateral creates a relationship between a collateral an obligee and a debtor, covering the exposure from the debtor with the collateral.",
+      "coverage": "Mortgages include a collateral contract. Any coverage with financial or physical collateral.",
+      "status": "Implemented"
+    },
+    "commodity": {
+      "identifier": "commodity",
+      "name": "Commodity",
+      "acronym": "COM",
+      "family": "Basic",
+      "class": "Ownership",
+      "description": "This is not a financial contract in its propper sense. However it traks movements of commodities such as oil, gas or even houses. Such commodities can serve as underlyings of commodity futures, guarantees or simply asset positions.",
+      "coverage": "Oil, gas, electricity, houses etc.",
+      "status": "Released"
+    },
+    "convertibleNote": {
+      "identifier": "convertibleNote",
+      "name": "Convertible Note",
+      "acronym": "BNDCP",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "Bonds with a call or put option. If option is exercised, underlying bond ceases to exist.",
+      "coverage": "Callable and puttable bonds or loans."
+    },
+    "creditDefaultSwap": {
+      "identifier": "creditDefaultSwap",
+      "name": "Credit Default Swap",
+      "acronym": "CDSWP",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "A payment is triggered if one or more of the ndelying counterparties defaults.",
+      "coverage": "All sorts of credit default swaps",
+      "status": "Implemented"
+    },
+    "creditLinkedNote": {
+      "identifier": "creditLinkedNote",
+      "name": "Credit Linked Note",
+      "acronym": "CLNTE",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "A credit linked note is a security with an embedded CDSWP"
+    },
+    "eXOTi": {
+      "identifier": "eXOTi",
+      "name": "EXOTi",
+      "acronym": "EXOTi",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "As of current, most of the exotic options which were popular before 2008 are out of favor and factually irrelevant.Which of the exotic options will be implemented will depend on the real relevance in the future.",
+      "coverage": "Knock-in and Knock-out, Barrier, Ladder, Rainbow options etc."
+    },
+    "exoticAnnuity": {
+      "identifier": "exoticAnnuity",
+      "name": "Exotic Annuity",
+      "acronym": "ANX",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Exotic version of ANN However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
+      "coverage": "A special version of this kind are teaser rate loans and mortgages with annuity features."
+    },
+    "exoticLinearAmortizer": {
+      "identifier": "exoticLinearAmortizer",
+      "name": "Exotic Linear Amortizer",
+      "acronym": "LAX",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Exotic version of LAM. However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
+      "coverage": "A special version of this kind are teaser rate loans and mortgages.",
+      "status": "Released"
+    },
+    "exoticNegativeAmortizer": {
+      "identifier": "exoticNegativeAmortizer",
+      "name": "Exotic Negative Amortizer",
+      "acronym": "NAX",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Exotic version of NAM However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
+      "coverage": "A special version of this kind are teaser rate loans and mortgages with variable MD.",
+      "status": "Planned"
+    },
+    "foreignExchangeOutright": {
+      "identifier": "foreignExchangeOutright",
+      "name": "Foreign Ex-change Outright",
+      "acronym": "FXOUT",
+      "family": "Combined",
+      "class": "Symmetric",
+      "description": "Two parties agree to exchange two fixed cash flows in different currencies at a certain point in time in future.",
+      "coverage": "Any FX-outright transaction at a future date. This is also the underlying of FX-options and FX futures.",
+      "status": "Released"
+    },
+    "future": {
+      "identifier": "future",
+      "name": "Future",
+      "acronym": "FUTUR",
+      "family": "Combined",
+      "class": "Symmetric",
+      "description": "Keeps track of value changes for any basic CT as underlying (PAM, ANN etc. but also FXOUT, STK, COM). Handles margining calls.",
+      "coverage": "Standard interest rate, FX, stock and commodity futures.",
+      "status": "Implemented"
+    },
+    "guarantee": {
+      "identifier": "guarantee",
+      "name": "Guarantee",
+      "acronym": "CEG",
+      "family": "Credit Enhancement",
+      "class": "Credit Enhancement",
+      "description": "Guarantee creates a relationship between a guarantor, an obligee and a debtor, moving the exposure from the debtor to the guarantor.",
+      "coverage": "Personal guarantee. Government guarantee. Underlyings of CDO´s.",
+      "status": "Implemented"
+    },
+    "linearAmortizer": {
+      "identifier": "linearAmortizer",
+      "name": "Linear Amortizer",
+      "acronym": "LAM",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Principal payment fully at IED. Principal repaid periodically in constant amounts till MD. Interest gets reduced accordingly. If variable rate, only interest payment is recalculated. Fixed and variable rates.",
+      "coverage": "Many amortizing loans.",
+      "status": "Released"
+    },
+    "margining": {
+      "identifier": "margining",
+      "name": "Margining",
+      "acronym": "MAR",
+      "family": "Credit Enhancement",
+      "class": "Credit Enhancement",
+      "description": "A Margining contract traces the value changes and the different margin categories like inital and variation margin.",
+      "coverage": "Margin contracts as applied in central depositories for any underlying or portfolio of underlying instruments.",
+      "status": "Implemented"
+    },
+    "negativeAmortizer": {
+      "identifier": "negativeAmortizer",
+      "name": "Negative Amortizer",
+      "acronym": "NAM",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Similar as ANN. However when resetting rate, total amount (interest plus principal) stay constant. MD shifts. Only variable rates.",
+      "coverage": "Special class of ARM´s (adjustable rate mortgages), Certain loans.",
+      "status": "Released"
+    },
+    "option": {
+      "identifier": "option",
+      "name": "Option",
+      "acronym": "OPTNS",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "Calculates straight option pay-off for any basic CT as underlying (PAM, ANN etc.) but also SWAPS, FXOUT, STK and COM. Single, periodic and continuous strike is supported.",
+      "coverage": "European, American and Bermudan options with Interest rate, FX and stock futures as underlying instruments.",
+      "status": "Implemented"
+    },
+    "perpetualBonds": {
+      "identifier": "perpetualBonds",
+      "name": "Perpetual Bonds",
+      "acronym": "PBN",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Bonds without any maturity date. Interest is paid into eternity if is not terminated.",
+      "coverage": "Consoles, war loans."
+    },
+    "plainVanillaSwap": {
+      "identifier": "plainVanillaSwap",
+      "name": "Plain Vanilla Swap",
+      "acronym": "SWPPV",
+      "family": "Combined",
+      "class": "Symmetric",
+      "description": "Plain vanilla swaps where the underlyings are always two identical PAM´s however with one leg fixed and the other variable.",
+      "coverage": "More than 90% of all interest rate swaps follow this simple pattern.",
+      "status": "Released"
+    },
+    "principalAtMaturity": {
+      "identifier": "principalAtMaturity",
+      "name": "Principal at Maturity",
+      "acronym": "PAM",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Principal payment fully at Initial Exchange Date (IED) and repaid at Maturity Date (MD). Fixed and variable rates.",
+      "coverage": "All kind of bonds, term deposits, bullet loans and mortgages etc.",
+      "status": "Released"
+    },
+    "repurchaseAgreement": {
+      "identifier": "repurchaseAgreement",
+      "name": "Repurchase Agreement",
+      "acronym": "REP",
+      "family": "Credit Enhancement",
+      "class": "Credit Enhancement",
+      "description": "A Repo contract controls and manages the sale and repurchase of assets on the books.",
+      "coverage": "Classical repo and reverse repo agreements.",
+      "status": "Planned"
+    },
+    "securitizationCreditRisk": {
+      "identifier": "securitizationCreditRisk",
+      "name": "Securitization Credit Risk",
+      "acronym": "SCRCR",
+      "family": "Combined",
+      "class": "Securitization",
+      "description": "Securitiazion contracts where contracs are ranked according to credit default. The lower ranked tranches are hit by the first defaults. Only when the lowest tranches are wiped out, the next higher tranch is hit.",
+      "coverage": "CDO´s"
+    },
+    "securitizationMarketRisk": {
+      "identifier": "securitizationMarketRisk",
+      "name": "Securitization Market Risk",
+      "acronym": "SCRMR",
+      "family": "Combined",
+      "class": "Securitization",
+      "description": "Securitiazion contracts where all underlying contracts are treated equal. The buyer of a tranche gets a part of the cash-flows.",
+      "coverage": "ABS´s, MBS´s of all sorts. Could be a simple tranche or more complex tranch like interest only and principal only."
+    },
+    "stock": {
+      "identifier": "stock",
+      "name": "Stock",
+      "acronym": "STK",
+      "family": "Basic",
+      "class": "Ownership",
+      "description": "Any instrument which is bought at a certain amount (market price normally) and then follows an index.",
+      "coverage": "All straight stocks.",
+      "status": "Released"
+    },
+    "swap": {
+      "identifier": "swap",
+      "name": "Swap",
+      "acronym": "SWAPS",
+      "family": "Combined",
+      "class": "Symmetric",
+      "description": "Exchange of two basic CT´s (PAM, ANN etc.). Normally one is fixed, the other variable. However all variants possible including different currencies for cross currency swaps, basic swaps or even different principal exchange programs.",
+      "coverage": "All kind of swaps. The variety is defined by the underlying CT´s which often are PAM and ANN in all its flavors. With each new basic CT the variety rises.",
+      "status": "Implemented"
+    },
+    "totalReturnSwap": {
+      "identifier": "totalReturnSwap",
+      "name": "Total Return Swap",
+      "acronym": "TRSWP",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "A total return swap is a swap agreement in which one party makes payments based on a set rate, either fixed or variable, while the other party makes payments based on the return of an underlying asset, which includes both the income it generates and any capital gains."
+    },
+    "undefinedMaturityProfile": {
+      "identifier": "undefinedMaturityProfile",
+      "name": "Undefined Maturity Profile",
+      "acronym": "UMP",
+      "family": "Basic",
+      "class": "Fixed Income",
+      "description": "Principal paid in and out at any point in time without prefixed schedule. Interest calculated on outstanding and capitalized periodically. Needs link to a behavioral function describing expected flows.",
+      "coverage": "Saving products of all kind, current accounts. In some countries even variable rate mortgages can be represented with this CT.",
+      "status": "Released"
+    },
+    "warrant": {
+      "identifier": "warrant",
+      "name": "Warrant",
+      "acronym": "BNDWR",
+      "family": "Combined",
+      "class": "Asymmetric",
+      "description": "Bonds with a warrant. If option is exercised, underlying bond continues to exist.",
+      "coverage": "Warrants."
+    }
+  },
   "terms": {
     "accruedInterest": {
       "identifier": "accruedInterest",
@@ -225,7 +530,7 @@
           "description": "Calculate accruals etc. first then shift event dates. Shift to the most recent preceding business day if this falls in the same month. Shift to the next following business day otherwise."
         }
       ],
-      "default": "noShift",
+      "default": "nos",
       "description": "BDC's are linked to a calendar. Calendars have working and non-working days. A BDC value other than N means that cash flows cannot fall on non-working days, they must be shifted to the next business day (following) or the previous on (preceding).\nThese two simple rules get refined twofold:\n- Following modified (preceding): Same like following (preceding), however if a cash flow gets shifted into a new month, then  it is shifted to preceding (following) business day.\n- Shift/calculate (SC) and calculate/shift (CS). Accrual, principal, and possibly other calculations are affected by this choice. In the case of SC first the dates are shifted and after the shift cash flows are calculated. In the case of CS it is the other way round.\nAttention: Does not affect non-cyclical dates such as PRD, MD, TD, IPCED since they can be set to the correct date directly."
     },
     "calendar": {
@@ -362,7 +667,7 @@
           "description": "Contract has been terminated."
         }
       ],
-      "default": "performant",
+      "default": "PF",
       "description": "Indicates the current contract performance status. Different states of the contract range from performing to default."
     },
     "contractRole": {
@@ -954,7 +1259,7 @@
           "description": "Interest is paid at the end of the interest period."
         }
       ],
-      "default": "end",
+      "default": "E",
       "description": "Usually, interest is paid at the end of each IPCL which corresponds to a IPPNT value of E which is also the default. If interest payment occurs at the beginning of the cycle, the value is B."
     },
     "cyclePointOfRateReset": {
@@ -979,7 +1284,7 @@
           "description": "The new rate is applied at the end of the reset period."
         }
       ],
-      "default": "beginning",
+      "default": "B",
       "description": "Normally rates get reset at the beginning of any resetting cycles. There are contracts where the rate is not set at the beginning but at the end of the cycle and then applied to the previous cycle (post-fixing); in other words the rate applies before it is fixed. Hence, the new rate is not known during the entire cycle where it applies. Therefore, the rate will be applied backwards at the end of the cycle. This happens through a correction of interest accrued."
     },
     "dayCountConvention": {
@@ -1052,8 +1357,10 @@
       "group": "Counterparty",
       "name": "Delinquency Rate",
       "acronym": "DQR",
-      "type": "PositiveRational",
-      "allowedValues": [],
+      "type": "Real",
+      "allowedValues": [
+        "Positive"
+      ],
       "default": "0",
       "description": "Rate at which Delinquency Payments accrue on NT (in addition to the interest rate) during the DelinquencyPeriod"
     },
@@ -1079,7 +1386,7 @@
           "description": "The underlying is delivered physically."
         }
       ],
-      "default": "physicalSettlement",
+      "default": "D",
       "description": "Indicates whether the contract is settled in cash or physical delivery.\nIn case of physical delivery, the underlying contract and associated (future) cash flows are effectively exchanged. In case of cash settlement, the current market value of the underlying contract determines the cash flow exchanged."
     },
     "endOfMonthConvention": {
@@ -1104,7 +1411,7 @@
           "description": "Schedule times fall on the end of every month if the anchor date represents the last day of the respective month."
         }
       ],
-      "default": "sameDay",
+      "default": "sd",
       "description": "When computing schedules a special problem arises if an anchor date is at the end of a month and a cycle of monthly or quarterly is applied (yearly in the case of leap years only). How do we have to interpret an anchor date April 30 plus 1M cycles? In case where EOM is selected, it will jump to the 31st of May, then June 30, July 31 and so on. If SM is selected, it will jump to the 30st always with of course an exception in February. \nThis logic applies for all months having 30 or less days and an anchor date at the last day. Month with 31 days will at any rate jump to the last of the month if anchor date is on the last day."
     },
     "exDividendDate": {
@@ -1285,7 +1592,7 @@
       "allowedValues": [
         {
           "option": "0",
-          "identifier": "notionalOutstanding",
+          "identifier": "notioalOutstanding",
           "name": "Notional Outstanding",
           "acronym": "NT",
           "description": "Interest accrues on the basis of the notional outstanding."
@@ -1305,7 +1612,7 @@
           "description": "Interest accrues on the basis of the lagged notional outstanding."
         }
       ],
-      "default": "notionalOutstanding",
+      "default": "NT",
       "description": "This is important for amortizing instruments. The basis of interest calculation is normally the notional outstanding amount as per SD. This is considered the fair basis and in many countries the only legal basis. If NULL or NTSD is selected, this is the case. \nAlternative bases (normally in order to favor the lending institution) are found. In the extreme case the original balance (PCDD=NT+PDCDD) never gets adjusted. In this case PCDD must be chosen. \nAn intermediate case exist wherre balances do get adjusted, however with lags. In this case NTL mut be selected and anchor dates and cycles must be set."
     },
     "interestCalculationBaseAmount": {
@@ -1401,8 +1708,7 @@
       "acronym": "SCMO",
       "type": "Varchar",
       "allowedValues": [],
-      "default": "",
-      "description": "TODO"
+      "default": ""
     },
     "marketValueObserved": {
       "identifier": "marketValueObserved",
@@ -1686,7 +1992,7 @@
           "description": "A penalty based on the current interest rate differential relative to the notional outstanding applies."
         }
       ],
-      "default": "noPenalty",
+      "default": "O",
       "description": "Defines whether prepayment is linked to a penalty and of which kind."
     },
     "periodCap": {
@@ -1752,7 +2058,7 @@
           "description": "Prepayment is allowed and reduces the maturity."
         }
       ],
-      "default": "noPrepayment",
+      "default": "N",
       "description": "This attribute defines whether or not the right of prepayment exists and if yes, how prepayment affects the remaining principal redemption schedule of the contract"
     },
     "prepaymentPeriod": {
@@ -1867,7 +2173,7 @@
           "description": "Scaling applies to interest and principal."
         }
       ],
-      "default": "noScaling",
+      "default": "000\n",
       "description": "Indicates which payments are scaled. I = Interest payments, N = Nominal payments and M = Maximum deferred interest amount. They can be scaled in any combination."
     },
     "scalingIndexAtContractDealDate": {
@@ -2050,686 +2356,6 @@
       ],
       "default": "",
       "description": "Used as rolling attribute with the callable CT's UMP and CLM uniquely. CLM's and UMP's will not be settled (MD not set) until the client uses his option to call the contract X_Day_Notice after Current Date. As long as MD or TD is not set, the client postpones his right to call to the future. The cycle is normally defined in number of business days."
-    }
-  },
-  "events": {
-    "monitoring": {
-      "option": "0",
-      "identifier": "monitoring",
-      "name": "Monitoring",
-      "acronym": "AD",
-      "description": "Monitoring of contract. Evaluates all contract states",
-      "sequence": "22"
-    },
-    "initialExchange": {
-      "option": "1",
-      "identifier": "initialExchange",
-      "name": "Initial Exchange",
-      "acronym": "IED",
-      "description": "Scheduled date of initial exchange of e.g. principal value in fixed income products",
-      "sequence": "1"
-    },
-    "feePayment": {
-      "option": "2",
-      "identifier": "feePayment",
-      "name": "Fee Payment",
-      "acronym": "FP",
-      "description": "Scheduled fee payments",
-      "sequence": "2"
-    },
-    "principalRedemption": {
-      "option": "3",
-      "identifier": "principalRedemption",
-      "name": "Principal Redemption",
-      "acronym": "PR",
-      "description": "Scheduled principal redemption payment",
-      "sequence": "3"
-    },
-    "principalDrawing": {
-      "option": "4",
-      "identifier": "principalDrawing",
-      "name": "Principal Drawing",
-      "acronym": "PD",
-      "description": "Drawing of principal amount e.g. in a credit line",
-      "sequence": "4"
-    },
-    "principalPaymentAmountFixing": {
-      "option": "5",
-      "identifier": "principalPaymentAmountFixing",
-      "name": "Principal Payment Amount Fixing",
-      "acronym": "PRF",
-      "description": "Scheduled fixing of principal payment amount",
-      "sequence": "5"
-    },
-    "penalytPayment": {
-      "option": "6",
-      "identifier": "penalytPayment",
-      "name": "Penalty Payment",
-      "acronym": "PY",
-      "description": "Scheduled payment of a penalty",
-      "sequence": "6"
-    },
-    "principalPrepayment": {
-      "option": "7",
-      "identifier": "principalPrepayment",
-      "name": "Principal Prepayment",
-      "acronym": "PP",
-      "description": "Unscheduled early repayment of principal",
-      "sequence": "7"
-    },
-    "interestPayment": {
-      "option": "8",
-      "identifier": "interestPayment",
-      "name": "Interest Payment",
-      "acronym": "IP",
-      "description": "Scheduled interest payment",
-      "sequence": "8"
-    },
-    "interestCapitalization": {
-      "option": "9",
-      "identifier": "interestCapitalization",
-      "name": "Interest Capitalization",
-      "acronym": "IPCI",
-      "description": "Scheduled capitalization of accrued interest",
-      "sequence": "9"
-    },
-    "creditEvent": {
-      "option": "10",
-      "identifier": "creditEvent",
-      "name": "Credit Event",
-      "acronym": "CE",
-      "description": "Credit event of counterparty to a contract",
-      "sequence": "10"
-    },
-    "rateResetFixed": {
-      "option": "11",
-      "identifier": "rateResetFixed",
-      "name": "Rate Reset Fixing with Known Rate",
-      "acronym": "RRF",
-      "description": "Scheduled fixing of variable rate with known new rate",
-      "sequence": "11 "
-    },
-    "rateResetVariable": {
-      "option": "12",
-      "identifier": "rateResetVariable",
-      "name": "Rate Reset Fixing with Unknown Rate",
-      "acronym": "RR",
-      "description": "Scheduled fixing of variable rate with unknown new rate",
-      "sequence": "12"
-    },
-    "dividendPayment": {
-      "option": "13",
-      "identifier": "dividendPayment",
-      "name": "Dividend Payment",
-      "acronym": "DV",
-      "description": "Payment of dividends",
-      "sequence": "13"
-    },
-    "purchase": {
-      "option": "14",
-      "identifier": "purchase",
-      "name": "Purchase",
-      "acronym": "PRD",
-      "description": "Purchase of a contract",
-      "sequence": "14"
-    },
-    "marginCall": {
-      "option": "15",
-      "identifier": "marginCall",
-      "name": "Margin Call",
-      "acronym": "MR",
-      "description": "Scheduled margin call",
-      "sequence": "15"
-    },
-    "termination": {
-      "option": "16",
-      "identifier": "termination",
-      "name": "Termination",
-      "acronym": "TD",
-      "description": "Termination of a contract",
-      "sequence": "16"
-    },
-    "scalingIndexFixing": {
-      "option": "17",
-      "identifier": "scalingIndexFixing",
-      "name": "Scaling Index Fixing",
-      "acronym": "SC",
-      "description": "Scheduled fixing of a scaling index",
-      "sequence": "17"
-    },
-    "interestCalculationBaseFixing": {
-      "option": "18",
-      "identifier": "interestCalculationBaseFixing",
-      "name": "Interest Calculation Base Fixing",
-      "acronym": "IPCB",
-      "description": "Scheduled fixing of the interest calculation base",
-      "sequence": "18"
-    },
-    "maturity": {
-      "option": "19",
-      "identifier": "maturity",
-      "name": "Maturity",
-      "acronym": "MD",
-      "description": "Maturity of a contract",
-      "sequence": "19"
-    },
-    "exercise": {
-      "option": "20",
-      "identifier": "exercise",
-      "name": "Exercise",
-      "acronym": "XD",
-      "description": "Exercise of a contractual feature such as an optionality",
-      "sequence": "20"
-    },
-    "settlement": {
-      "option": "21",
-      "identifier": "settlement",
-      "name": "Settlement",
-      "acronym": "STD",
-      "description": "Settlement of an exercised contractual claim",
-      "sequence": "21"
-    }
-  },
-  "state-variables": {
-    "accruedInterest": {
-      "identifier": "accruedInterest",
-      "name": "Accrued Interest",
-      "acronym": "IPAC",
-      "description": "The current value of accrued interest",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "accruedInterest2": {
-      "identifier": "accruedInterest2",
-      "name": "Accrued Interest 2",
-      "acronym": "IPAC2",
-      "description": "The current value of accrued interest of the second leg",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "contractPerformance": {
-      "identifier": "contractPerformance",
-      "name": "Contract Performance",
-      "acronym": "PRF",
-      "description": "Indicates the current Contract Performance status. Different states of the contract range from performing to default.",
-      "type": "Enum",
-      "allowedValues": [
-        {
-          "option": "0",
-          "identifier": "performant",
-          "name": "Performant",
-          "acronym": "PF",
-          "description": "Contract is performing according to terms and conditions."
-        },
-        {
-          "option": "1",
-          "identifier": "delayed",
-          "name": "Delayed",
-          "acronym": "DL",
-          "description": "Contractual payment obligations are delayed according to the Grace Period."
-        },
-        {
-          "option": "2",
-          "identifier": "delinquent",
-          "name": "Delinquent",
-          "acronym": "DQ",
-          "description": "Contractual payment obligations are delinquent according to the Delinquency Period."
-        },
-        {
-          "option": "3",
-          "identifier": "default",
-          "name": "Default",
-          "acronym": "DF",
-          "description": "Contract defaulted on payment obligations according to Delinquency Period."
-        },
-        {
-          "option": "4",
-          "identifier": "matured",
-          "name": "Matured",
-          "acronym": "MA",
-          "description": "Contract matured."
-        },
-        {
-          "option": "5",
-          "identifier": "terminated",
-          "name": "Terminated",
-          "acronym": "TE",
-          "description": "Contract has been terminated."
-        }
-      ]
-    },
-    "exerciseAmount": {
-      "identifier": "exerciseAmount",
-      "name": "Exercise Amount",
-      "acronym": "XA",
-      "description": "The amount fixed for a the contingent event/obligation exercised at Exercise Date",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "exerciseDate": {
-      "identifier": "exerciseDate",
-      "name": "Exercise Date",
-      "acronym": "XD",
-      "description": "The timestamp at which a contingent event/obligation is exercised",
-      "type": "Timestamp",
-      "allowedValues": [
-        "ISO8601 Datetime"
-      ]
-    },
-    "feeAccrued": {
-      "identifier": "feeAccrued",
-      "name": "Fee Accrued",
-      "acronym": "FEAC",
-      "description": "The current value of accrued fees",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "interestCalculationBaseAmount": {
-      "identifier": "interestCalculationBaseAmount",
-      "name": "Interest Calculation Base Amount",
-      "acronym": "ICBA",
-      "description": "The basis at which interest is being accrued. Potentially different from NVL.",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "interestScalingMultiplier": {
-      "identifier": "interestScalingMultiplier",
-      "name": "Interest Scaling Multiplier",
-      "acronym": "SCIP",
-      "description": "The multiplier being applied to interest cash flows",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "maturityDate": {
-      "identifier": "maturityDate",
-      "name": "Maturity Date",
-      "acronym": "MD",
-      "description": "The timestamp as per which the contract matures according to the initial terms or as per unscheduled events",
-      "type": "Timestamp",
-      "allowedValues": [
-        "ISO8601 Datetime"
-      ]
-    },
-    "nextPrincipalRedemptionPayment": {
-      "identifier": "nextPrincipalRedemptionPayment",
-      "name": "Next Principal Redemption Payment",
-      "acronym": "PRNXT",
-      "description": "The value at which principal is being repaid. This may be including or excluding of interest depending on the Contract Type",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "nominalInterestRate": {
-      "identifier": "nominalInterestRate",
-      "name": "Nominal Interest Rate",
-      "acronym": "IPNR",
-      "description": "The applicable nominal rate",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "nominalInterestRate2": {
-      "identifier": "nominalInterestRate2",
-      "name": "Nominal Interest Rate 2",
-      "acronym": "IPNR2",
-      "description": "The applicable nominal rate",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "nonPerformingDate": {
-      "identifier": "nonPerformingDate",
-      "name": "Non Performing Date",
-      "acronym": "NPD",
-      "description": "The date of the (uncovered) payment event responsible for the current value of the Contract Performance state variable.",
-      "type": "Timestamp",
-      "allowedValues": [
-        "ISO8601 Datetime"
-      ]
-    },
-    "notionalPrincipal": {
-      "identifier": "notionalPrincipal",
-      "name": "Notional Principal",
-      "acronym": "NT",
-      "description": "The outstanding nominal value",
-      "type": "Amount",
-      "allowedValues": []
-    },
-    "notionalPrincipal2": {
-      "identifier": "notionalPrincipal2",
-      "name": "Notional Principal 2",
-      "acronym": "NT2",
-      "description": "The outstanding nominal value of the second leg",
-      "type": "Amount",
-      "allowedValues": []
-    },
-    "notionalScalingMultiplier": {
-      "identifier": "notionalScalingMultiplier",
-      "name": "Notional Scaling Multiplier",
-      "acronym": "SCNT",
-      "description": "The multiplier being applied to principal cash flows",
-      "type": "Real",
-      "allowedValues": []
-    },
-    "statusDate": {
-      "identifier": "statusDate",
-      "name": "Status Date",
-      "acronym": "SD",
-      "description": "The timestamp as per which the state is captured at any point in time",
-      "type": "Timestamp",
-      "allowedValues": [
-        "ISO8601 Datetime"
-      ]
-    },
-    "terminationDate": {
-      "identifier": "terminationDate",
-      "name": "Termination Date",
-      "acronym": "TD",
-      "description": "The timestamp of unscheduled termination of a contract",
-      "type": "Timestamp",
-      "allowedValues": [
-        "ISO8601 Datetime"
-      ]
-    }
-  },
-  "contracts": {
-    "annuity": {
-      "identifier": "annuity",
-      "name": "Annuity",
-      "acronym": "ANN",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Principal payment fully at IED and interest plus principal repaid periodically in constant amounts till MD. If variable rate, total amount for interest and principal is recalculated to be fully matured at MD.",
-      "coverage": "Classical level payment mortgages, leasing contracts etc.",
-      "status": "Released"
-    },
-    "callMoney": {
-      "identifier": "callMoney",
-      "name": "Call Money",
-      "acronym": "CLM",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Loans that are rolled over as long as they are not called. Once called it has to be paid back after the stipulated notice period.",
-      "coverage": "Interbank loans with call features.",
-      "status": "Released"
-    },
-    "capFloor": {
-      "identifier": "capFloor",
-      "name": "Cap Floors",
-      "acronym": "CAPFL",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "Interest rate option expressed in a maximum or minimum interest rate.",
-      "coverage": "Caps and Floor options.",
-      "status": "Implemented"
-    },
-    "cash": {
-      "identifier": "cash",
-      "name": "Cash",
-      "acronym": "CSH",
-      "family": "Basic",
-      "class": "Ownership",
-      "description": "Cash or cash equivalent position",
-      "coverage": "Cash, deposits at central bank.",
-      "status": "Released"
-    },
-    "collateral": {
-      "identifier": "collateral",
-      "name": "Collateral",
-      "acronym": "CEC",
-      "family": "Credit Enhancement",
-      "class": "Credit Enhancement",
-      "description": "Collateral creates a relationship between a collateral an obligee and a debtor, covering the exposure from the debtor with the collateral.",
-      "coverage": "Mortgages include a collateral contract. Any coverage with financial or physical collateral.",
-      "status": "Implemented"
-    },
-    "commodity": {
-      "identifier": "commodity",
-      "name": "Commodity",
-      "acronym": "COM",
-      "family": "Basic",
-      "class": "Ownership",
-      "description": "This is not a financial contract in its propper sense. However it traks movements of commodities such as oil, gas or even houses. Such commodities can serve as underlyings of commodity futures, guarantees or simply asset positions.",
-      "coverage": "Oil, gas, electricity, houses etc.",
-      "status": "Released"
-    },
-    "convertibleNote": {
-      "identifier": "convertibleNote",
-      "name": "Convertible Note",
-      "acronym": "BNDCP",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "Bonds with a call or put option. If option is exercised, underlying bond ceases to exist.",
-      "coverage": "Callable and puttable bonds or loans."
-    },
-    "creditDefaultSwap": {
-      "identifier": "creditDefaultSwap",
-      "name": "Credit Default Swap",
-      "acronym": "CDSWP",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "A payment is triggered if one or more of the ndelying counterparties defaults.",
-      "coverage": "All sorts of credit default swaps",
-      "status": "Implemented"
-    },
-    "creditLinkedNote": {
-      "identifier": "creditLinkedNote",
-      "name": "Credit Linked Note",
-      "acronym": "CLNTE",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "coverage": "TODO coverage",
-      "description": "A credit linked note is a security with an embedded CDSWP"
-    },
-    "eXOTi": {
-      "identifier": "eXOTi",
-      "name": "EXOTi",
-      "acronym": "EXOTi",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "As of current, most of the exotic options which were popular before 2008 are out of favor and factually irrelevant.Which of the exotic options will be implemented will depend on the real relevance in the future.",
-      "coverage": "Knock-in and Knock-out, Barrier, Ladder, Rainbow options etc."
-    },
-    "exoticAnnuity": {
-      "identifier": "exoticAnnuity",
-      "name": "Exotic Annuity",
-      "acronym": "ANX",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Exotic version of ANN However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
-      "coverage": "A special version of this kind are teaser rate loans and mortgages with annuity features."
-    },
-    "exoticLinearAmortizer": {
-      "identifier": "exoticLinearAmortizer",
-      "name": "Exotic Linear Amortizer",
-      "acronym": "LAX",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Exotic version of LAM. However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
-      "coverage": "A special version of this kind are teaser rate loans and mortgages.",
-      "status": "Released"
-    },
-    "exoticNegativeAmortizer": {
-      "identifier": "exoticNegativeAmortizer",
-      "name": "Exotic Negative Amortizer",
-      "acronym": "NAX",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Exotic version of NAM However step ups with respect to (i) Principal, (ii) Interest rates are possible. Highly flexible to match totally irregular principal payments. Principal can also be paid out in steps.",
-      "coverage": "A special version of this kind are teaser rate loans and mortgages with variable MD.",
-      "status": "Planned"
-    },
-    "foreignExchangeOutright": {
-      "identifier": "foreignExchangeOutright",
-      "name": "Foreign Ex-change Outright",
-      "acronym": "FXOUT",
-      "family": "Combined",
-      "class": "Symmetric",
-      "description": "Two parties agree to exchange two fixed cash flows in different currencies at a certain point in time in future.",
-      "coverage": "Any FX-outright transaction at a future date. This is also the underlying of FX-options and FX futures.",
-      "status": "Released"
-    },
-    "future": {
-      "identifier": "future",
-      "name": "Future",
-      "acronym": "FUTUR",
-      "family": "Combined",
-      "class": "Symmetric",
-      "description": "Keeps track of value changes for any basic CT as underlying (PAM, ANN etc. but also FXOUT, STK, COM). Handles margining calls.",
-      "coverage": "Standard interest rate, FX, stock and commodity futures.",
-      "status": "Implemented"
-    },
-    "guarantee": {
-      "identifier": "guarantee",
-      "name": "Guarantee",
-      "acronym": "CEG",
-      "family": "Credit Enhancement",
-      "class": "Credit Enhancement",
-      "description": "Guarantee creates a relationship between a guarantor, an obligee and a debtor, moving the exposure from the debtor to the guarantor.",
-      "coverage": "Personal guarantee. Government guarantee. Underlyings of CDO´s.",
-      "status": "Implemented"
-    },
-    "linearAmortizer": {
-      "identifier": "linearAmortizer",
-      "name": "Linear Amortizer",
-      "acronym": "LAM",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Principal payment fully at IED. Principal repaid periodically in constant amounts till MD. Interest gets reduced accordingly. If variable rate, only interest payment is recalculated. Fixed and variable rates.",
-      "coverage": "Many amortizing loans.",
-      "status": "Released"
-    },
-    "margining": {
-      "identifier": "margining",
-      "name": "Margining",
-      "acronym": "MAR",
-      "family": "Credit Enhancement",
-      "class": "Credit Enhancement",
-      "description": "A Margining contract traces the value changes and the different margin categories like inital and variation margin.",
-      "coverage": "Margin contracts as applied in central depositories for any underlying or portfolio of underlying instruments.",
-      "status": "Implemented"
-    },
-    "negativeAmortizer": {
-      "identifier": "negativeAmortizer",
-      "name": "Negative Amortizer",
-      "acronym": "NAM",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Similar as ANN. However when resetting rate, total amount (interest plus principal) stay constant. MD shifts. Only variable rates.",
-      "coverage": "Special class of ARM´s (adjustable rate mortgages), Certain loans.",
-      "status": "Released"
-    },
-    "option": {
-      "identifier": "option",
-      "name": "Option",
-      "acronym": "OPTNS",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "Calculates straight option pay-off for any basic CT as underlying (PAM, ANN etc.) but also SWAPS, FXOUT, STK and COM. Single, periodic and continuous strike is supported.",
-      "coverage": "European, American and Bermudan options with Interest rate, FX and stock futures as underlying instruments.",
-      "status": "Implemented"
-    },
-    "perpetualBonds": {
-      "identifier": "perpetualBonds",
-      "name": "Perpetual Bonds",
-      "acronym": "PBN",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Bonds without any maturity date. Interest is paid into eternity if is not terminated.",
-      "coverage": "Consoles, war loans."
-    },
-    "plainVanillaSwap": {
-      "identifier": "plainVanillaSwap",
-      "name": "Plain Vanilla Swap",
-      "acronym": "SWPPV",
-      "family": "Combined",
-      "class": "Symmetric",
-      "description": "Plain vanilla swaps where the underlyings are always two identical PAM´s however with one leg fixed and the other variable.",
-      "coverage": "More than 90% of all interest rate swaps follow this simple pattern.",
-      "status": "Released"
-    },
-    "principalAtMaturity": {
-      "identifier": "principalAtMaturity",
-      "name": "Principal at Maturity",
-      "acronym": "PAM",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Principal payment fully at Initial Exchange Date (IED) and repaid at Maturity Date (MD). Fixed and variable rates.",
-      "coverage": "All kind of bonds, term deposits, bullet loans and mortgages etc.",
-      "status": "Released"
-    },
-    "repurchaseAgreement": {
-      "identifier": "repurchaseAgreement",
-      "name": "Repurchase Agreement",
-      "acronym": "REP",
-      "family": "Credit Enhancement",
-      "class": "Credit Enhancement",
-      "description": "A Repo contract controls and manages the sale and repurchase of assets on the books.",
-      "coverage": "Classical repo and reverse repo agreements.",
-      "status": "Planned"
-    },
-    "securitizationCreditRisk": {
-      "identifier": "securitizationCreditRisk",
-      "name": "Securitization Credit Risk",
-      "acronym": "SCRCR",
-      "family": "Combined",
-      "class": "Securitization",
-      "description": "Securitiazion contracts where contracs are ranked according to credit default. The lower ranked tranches are hit by the first defaults. Only when the lowest tranches are wiped out, the next higher tranch is hit.",
-      "coverage": "CDO´s"
-    },
-    "securitizationMarketRisk": {
-      "identifier": "securitizationMarketRisk",
-      "name": "Securitization Market Risk",
-      "acronym": "SCRMR",
-      "family": "Combined",
-      "class": "Securitization",
-      "description": "Securitiazion contracts where all underlying contracts are treated equal. The buyer of a tranche gets a part of the cash-flows.",
-      "coverage": "ABS´s, MBS´s of all sorts. Could be a simple tranche or more complex tranch like interest only and principal only."
-    },
-    "stock": {
-      "identifier": "stock",
-      "name": "Stock",
-      "acronym": "STK",
-      "family": "Basic",
-      "class": "Ownership",
-      "description": "Any instrument which is bought at a certain amount (market price normally) and then follows an index.",
-      "coverage": "All straight stocks.",
-      "status": "Released"
-    },
-    "swap": {
-      "identifier": "swap",
-      "name": "Swap",
-      "acronym": "SWAPS",
-      "family": "Combined",
-      "class": "Symmetric",
-      "description": "Exchange of two basic CT´s (PAM, ANN etc.). Normally one is fixed, the other variable. However all variants possible including different currencies for cross currency swaps, basic swaps or even different principal exchange programs.",
-      "coverage": "All kind of swaps. The variety is defined by the underlying CT´s which often are PAM and ANN in all its flavors. With each new basic CT the variety rises.",
-      "status": "Implemented"
-    },
-    "totalReturnSwap": {
-      "identifier": "totalReturnSwap",
-      "name": "Total Return Swap",
-      "acronym": "TRSWP",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "coverage": "TODO coverage",
-      "description": "A total return swap is a swap agreement in which one party makes payments based on a set rate, either fixed or variable, while the other party makes payments based on the return of an underlying asset, which includes both the income it generates and any capital gains."
-    },
-    "undefinedMaturityProfile": {
-      "identifier": "undefinedMaturityProfile",
-      "name": "Undefined Maturity Profile",
-      "acronym": "UMP",
-      "family": "Basic",
-      "class": "Fixed Income",
-      "description": "Principal paid in and out at any point in time without prefixed schedule. Interest calculated on outstanding and capitalized periodically. Needs link to a behavioral function describing expected flows.",
-      "coverage": "Saving products of all kind, current accounts. In some countries even variable rate mortgages can be represented with this CT.",
-      "status": "Released"
-    },
-    "warrant": {
-      "identifier": "warrant",
-      "name": "Warrant",
-      "acronym": "BNDWR",
-      "family": "Combined",
-      "class": "Asymmetric",
-      "description": "Bonds with a warrant. If option is exercised, underlying bond continues to exist.",
-      "coverage": "Warrants."
     }
   },
   "applicability": {
@@ -3523,6 +3149,544 @@
       "rateSpread": "NN(9,1,)",
       "marketObjectCodeOfRateReset": "NN(9,1,)",
       "settlementCurrency": "x"
+    }
+  },
+  "states": {
+    "accruedInterest": {
+      "identifier": "accruedInterest",
+      "name": "Accrued Interest",
+      "acronym": "IPAC",
+      "description": "The current value of accrued interest",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "accruedInterest2": {
+      "identifier": "accruedInterest2",
+      "name": "Accrued Interest 2",
+      "acronym": "IPAC2",
+      "description": "The current value of accrued interest of the second leg",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "contractPerformance": {
+      "identifier": "contractPerformance",
+      "name": "Contract Performance",
+      "acronym": "PRF",
+      "description": "Indicates the current Contract Performance status. Different states of the contract range from performing to default.",
+      "type": "Enum",
+      "allowedValues": [
+        {
+          "option": "0",
+          "identifier": "performant",
+          "name": "Performant",
+          "acronym": "PF",
+          "description": "Contract is performing according to terms and conditions."
+        },
+        {
+          "option": "1",
+          "identifier": "delayed",
+          "name": "Delayed",
+          "acronym": "DL",
+          "description": "Contractual payment obligations are delayed according to the Grace Period."
+        },
+        {
+          "option": "2",
+          "identifier": "delinquent",
+          "name": "Delinquent",
+          "acronym": "DQ",
+          "description": "Contractual payment obligations are delinquent according to the Delinquency Period."
+        },
+        {
+          "option": "3",
+          "identifier": "default",
+          "name": "Default",
+          "acronym": "DF",
+          "description": "Contract defaulted on payment obligations according to Delinquency Period."
+        },
+        {
+          "option": "4",
+          "identifier": "matured",
+          "name": "Matured",
+          "acronym": "MA",
+          "description": "Contract matured."
+        },
+        {
+          "option": "5",
+          "identifier": "terminated",
+          "name": "Terminated",
+          "acronym": "TE",
+          "description": "Contract has been terminated."
+        }
+      ]
+    },
+    "exerciseAmount": {
+      "identifier": "exerciseAmount",
+      "name": "Exercise Amount",
+      "acronym": "XA",
+      "description": "The amount fixed for a the contingent event/obligation exercised at Exercise Date",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "exerciseDate": {
+      "identifier": "exerciseDate",
+      "name": "Exercise Date",
+      "acronym": "XD",
+      "description": "The timestamp at which a contingent event/obligation is exercised",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "feeAccrued": {
+      "identifier": "feeAccrued",
+      "name": "Fee Accrued",
+      "acronym": "FEAC",
+      "description": "The current value of accrued fees",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "interestCalculationBaseAmount": {
+      "identifier": "interestCalculationBaseAmount",
+      "name": "Interest Calculation Base Amount",
+      "acronym": "ICBA",
+      "description": "The basis at which interest is being accrued. Potentially different from NVL.",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "interestScalingMultiplier": {
+      "identifier": "interestScalingMultiplier",
+      "name": "Interest Scaling Multiplier",
+      "acronym": "SCIP",
+      "description": "The multiplier being applied to interest cash flows",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "maturityDate": {
+      "identifier": "maturityDate",
+      "name": "Maturity Date",
+      "acronym": "MD",
+      "description": "The timestamp as per which the contract matures according to the initial terms or as per unscheduled events",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "nextPrincipalRedemptionPayment": {
+      "identifier": "nextPrincipalRedemptionPayment",
+      "name": "Next Principal Redemption Payment",
+      "acronym": "PRNXT",
+      "description": "The value at which principal is being repaid. This may be including or excluding of interest depending on the Contract Type",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nominalInterestRate": {
+      "identifier": "nominalInterestRate",
+      "name": "Nominal Interest Rate",
+      "acronym": "IPNR",
+      "description": "The applicable nominal rate",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nominalInterestRate2": {
+      "identifier": "nominalInterestRate2",
+      "name": "Nominal Interest Rate 2",
+      "acronym": "IPNR2",
+      "description": "The applicable nominal rate",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "nonPerformingDate": {
+      "identifier": "nonPerformingDate",
+      "name": "Non Performing Date",
+      "acronym": "NPD",
+      "description": "The date of the (uncovered) payment event responsible for the current value of the Contract Performance state variable.",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "notionalPrincipal": {
+      "identifier": "notionalPrincipal",
+      "name": "Notional Principal",
+      "acronym": "NT",
+      "description": "The outstanding nominal value",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "notionalPrincipal2": {
+      "identifier": "notionalPrincipal2",
+      "name": "Notional Principal 2",
+      "acronym": "NT2",
+      "description": "The outstanding nominal value of the second leg",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "notionalScalingMultiplier": {
+      "identifier": "notionalScalingMultiplier",
+      "name": "Notional Scaling Multiplier",
+      "acronym": "SCNT",
+      "description": "The multiplier being applied to principal cash flows",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "statusDate": {
+      "identifier": "statusDate",
+      "name": "Status Date",
+      "acronym": "SD",
+      "description": "The timestamp as per which the state is captured at any point in time",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "terminationDate": {
+      "identifier": "terminationDate",
+      "name": "Termination Date",
+      "acronym": "TD",
+      "description": "The timestamp of unscheduled termination of a contract",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    }
+  },
+  "event": {
+    "contractID": {
+      "identifier": "contractID",
+      "name": "Contract ID",
+      "acronym": "CID",
+      "description": "The Contract ID of the contract which created the event.",
+      "type": "Varchar",
+      "allowedValues": []
+    },
+    "currency": {
+      "identifier": "currency",
+      "name": "Currency",
+      "acronym": "CUR",
+      "description": "The currency in which the event payoff is scheduled",
+      "type": "Varchar",
+      "allowedValues": [
+        "ISO4217"
+      ]
+    },
+    "eventTime": {
+      "identifier": "eventTime",
+      "name": "Event Time",
+      "acronym": "TEV",
+      "description": "The timestamp of the event",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "eventType": {
+      "identifier": "eventType",
+      "name": "Event Type",
+      "acronym": "EVT",
+      "description": "The type of the event. Different types have their own business logic in terms of payoff and state transition functions",
+      "type": "Enum",
+      "allowedValues": [
+        {
+          "option": "0",
+          "identifier": "monitoring",
+          "name": "Monitoring",
+          "acronym": "AD",
+          "description": "Monitoring of contract. Evaluates all contract states",
+          "sequence": "22"
+        },
+        {
+          "option": "1",
+          "identifier": "initialExchange",
+          "name": "Initial Exchange",
+          "acronym": "IED",
+          "description": "Scheduled date of initial exchange of e.g. principal value in fixed income products",
+          "sequence": "1"
+        },
+        {
+          "option": "2",
+          "identifier": "feePayment",
+          "name": "Fee Payment",
+          "acronym": "FP",
+          "description": "Scheduled fee payments",
+          "sequence": "2"
+        },
+        {
+          "option": "3",
+          "identifier": "principalRedemption",
+          "name": "Principal Redemption",
+          "acronym": "PR",
+          "description": "Scheduled principal redemption payment",
+          "sequence": "3"
+        },
+        {
+          "option": "4",
+          "identifier": "principalDrawing",
+          "name": "Principal Drawing",
+          "acronym": "PD",
+          "description": "Drawing of principal amount e.g. in a credit line",
+          "sequence": "4"
+        },
+        {
+          "option": "5",
+          "identifier": "principalPaymentAmountFixing",
+          "name": "Principal Payment Amount Fixing",
+          "acronym": "PRF",
+          "description": "Scheduled fixing of principal payment amount",
+          "sequence": "5"
+        },
+        {
+          "option": "6",
+          "identifier": "penalytPayment",
+          "name": "Penalty Payment",
+          "acronym": "PY",
+          "description": "Scheduled payment of a penalty",
+          "sequence": "6"
+        },
+        {
+          "option": "7",
+          "identifier": "principalPrepayment",
+          "name": "Principal Prepayment",
+          "acronym": "PP",
+          "description": "Unscheduled early repayment of principal",
+          "sequence": "7"
+        },
+        {
+          "option": "8",
+          "identifier": "interestPayment",
+          "name": "Interest Payment",
+          "acronym": "IP",
+          "description": "Scheduled interest payment",
+          "sequence": "8"
+        },
+        {
+          "option": "9",
+          "identifier": "interestCapitalization",
+          "name": "Interest Capitalization",
+          "acronym": "IPCI",
+          "description": "Scheduled capitalization of accrued interest",
+          "sequence": "9"
+        },
+        {
+          "option": "10",
+          "identifier": "creditEvent",
+          "name": "Credit Event",
+          "acronym": "CE",
+          "description": "Credit event of counterparty to a contract",
+          "sequence": "10"
+        },
+        {
+          "option": "11",
+          "identifier": "rateResetFixed",
+          "name": "Rate Reset Fixing with Known Rate",
+          "acronym": "RRF",
+          "description": "Scheduled fixing of variable rate with known new rate",
+          "sequence": "11 "
+        },
+        {
+          "option": "12",
+          "identifier": "rateResetVariable",
+          "name": "Rate Reset Fixing with Unknown Rate",
+          "acronym": "RR",
+          "description": "Scheduled fixing of variable rate with unknown new rate",
+          "sequence": "12"
+        },
+        {
+          "option": "13",
+          "identifier": "dividendPayment",
+          "name": "Dividend Payment",
+          "acronym": "DV",
+          "description": "Payment of dividends",
+          "sequence": "13"
+        },
+        {
+          "option": "14",
+          "identifier": "purchase",
+          "name": "Purchase",
+          "acronym": "PRD",
+          "description": "Purchase of a contract",
+          "sequence": "14"
+        },
+        {
+          "option": "15",
+          "identifier": "marginCall",
+          "name": "Margin Call",
+          "acronym": "MR",
+          "description": "Scheduled margin call",
+          "sequence": "15"
+        },
+        {
+          "option": "16",
+          "identifier": "termination",
+          "name": "Termination",
+          "acronym": "TD",
+          "description": "Termination of a contract",
+          "sequence": "16"
+        },
+        {
+          "option": "17",
+          "identifier": "scalingIndexFixing",
+          "name": "Scaling Index Fixing",
+          "acronym": "SC",
+          "description": "Scheduled fixing of a scaling index",
+          "sequence": "17"
+        },
+        {
+          "option": "18",
+          "identifier": "interestCalculationBaseFixing",
+          "name": "Interest Calculation Base Fixing",
+          "acronym": "IPCB",
+          "description": "Scheduled fixing of the interest calculation base",
+          "sequence": "18"
+        },
+        {
+          "option": "19",
+          "identifier": "maturity",
+          "name": "Maturity",
+          "acronym": "MD",
+          "description": "Maturity of a contract",
+          "sequence": "19"
+        },
+        {
+          "option": "20",
+          "identifier": "exercise",
+          "name": "Exercise",
+          "acronym": "XD",
+          "description": "Exercise of a contractual feature such as an optionality",
+          "sequence": "20"
+        },
+        {
+          "option": "21",
+          "identifier": "settlement",
+          "name": "Settlement",
+          "acronym": "STD",
+          "description": "Settlement of an exercised contractual claim",
+          "sequence": "21"
+        }
+      ]
+    },
+    "payoff": {
+      "identifier": "payoff",
+      "name": "Payoff",
+      "acronym": "PYO",
+      "description": "The event payoff (if any). Is zero if no payoff needs be settled for the event",
+      "type": "Real",
+      "allowedValues": []
+    },
+    "scheduleTime": {
+      "identifier": "scheduleTime",
+      "name": "Schedule Time",
+      "acronym": "TSC",
+      "description": "The scheduled timestamp for updating event payoff and post-event state",
+      "type": "Timestamp",
+      "allowedValues": [
+        "ISO8601 Datetime"
+      ]
+    },
+    "state": {
+      "identifier": "state",
+      "name": "State",
+      "acronym": "EVS",
+      "description": "The post-event state. Results from applying the event’s state transition function to the pre-event state",
+      "type": "State",
+      "allowedValues": []
+    }
+  },
+  "contractReference": {
+    "object": {
+      "identifier": "object",
+      "name": "Object",
+      "acronym": "OBJ",
+      "description": "The referencing object",
+      "type": "Varchar",
+      "allowedValues": []
+    },
+    "role": {
+      "identifier": "role",
+      "name": "Reference Role",
+      "acronym": "RRL",
+      "description": "The role of the referencing object",
+      "type": "Enum",
+      "allowedValues": [
+        {
+          "option": "0",
+          "identifier": "underlying",
+          "name": "Underlying",
+          "acronym": "UDL",
+          "description": "The reference represents a simple underlyer contract"
+        },
+        {
+          "option": "1",
+          "identifier": "firstLeg",
+          "name": "First Leg",
+          "acronym": "FIL",
+          "description": "The reference represents the first leg contract"
+        },
+        {
+          "option": "2",
+          "identifier": "secondLeg",
+          "name": "Second Leg",
+          "acronym": "SEL",
+          "description": "The reference represents the second leg contract"
+        },
+        {
+          "option": "3",
+          "identifier": "coveredContract",
+          "name": "Covered Contract",
+          "acronym": "COVE",
+          "description": "The reference represents a contract that is covered under the parent contract"
+        },
+        {
+          "option": "4",
+          "identifier": "coveringContract",
+          "name": "Covering Contract",
+          "acronym": "COVI",
+          "description": "The reference represents a contract that covers for covering contracts under the parent contract Contract"
+        }
+      ]
+    },
+    "type": {
+      "identifier": "type",
+      "name": "Reference Type",
+      "acronym": "RTP",
+      "description": "The type of the referencing object",
+      "type": "Enum",
+      "allowedValues": [
+        {
+          "option": "0",
+          "identifier": "contract",
+          "name": "Contract",
+          "acronym": "CNT",
+          "description": "The reference represents an actual contract"
+        },
+        {
+          "option": "1",
+          "identifier": "contractIdentifier",
+          "name": "Contract Identifier",
+          "acronym": "CID",
+          "description": "The reference represents an identifier of an actual contract"
+        },
+        {
+          "option": "2",
+          "identifier": "marketObjectIdentifier",
+          "name": "Market Object Identifier",
+          "acronym": "MOC",
+          "description": "The reference represents the identifier of a market object"
+        },
+        {
+          "option": "3",
+          "identifier": "legalEntityIdentifier",
+          "name": "Legal Entity Identifier",
+          "acronym": "EID",
+          "description": "The reference represents the identifier of a legal entity"
+        },
+        {
+          "option": "4",
+          "identifier": "contractStructure",
+          "name": "Contract Structure",
+          "acronym": "CST",
+          "description": "The reference represents a ContractStructure"
+        }
+      ]
     }
   }
 }

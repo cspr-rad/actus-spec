@@ -7,6 +7,10 @@
   text(str)
 })
 #let citation_needed = todo("[CITATION NEEDED]")
+#let dict_todo(str) = box({
+  text("TODO [PROBLEM IN DICTIONARY]: ", red)
+  text(str)
+})
 
 // Data import
 #let dictionary = json("dictionary.json")
@@ -143,7 +147,11 @@
 #let MRVM = make_term_label("variationMargin")
 #let XDN = make_term_label("xDayNotice")
 
-#let events = dictionary.at("events")
+#let eventsList = dictionary.at("event").at("eventType").at("allowedValues")
+#let events = (:)
+#for e in eventsList {
+  events.insert(e.identifier, e)
+}
 
 #let make_event_label(identifier) = [
   #let event = events.at(identifier)
@@ -180,7 +188,7 @@
 #let XD = make_event_label("exercise")
 #let STD = make_event_label("settlement")
 
-#let state_variables = dictionary.at("state-variables")
+#let state_variables = dictionary.at("states")
 #let make_state_variable_label(identifier) = {
   let state_variable = state_variables.at(identifier)
   link(
@@ -208,7 +216,7 @@
 #let SD = make_state_variable_label("statusDate")
 #let TD = make_state_variable_label("terminationDate")
 
-#let contracts = dictionary.at("contracts")
+#let contracts = dictionary.at("taxonomy")
 
 #let make_contract_label(identifier) = {
   let contract = contracts.at(identifier)
@@ -548,18 +556,25 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   #if (term.default != "") [
     Default value:
     #if (term.type == "Enum") {
-      link(
-        label("term_" + term.identifier + "_allowed_value_" + term.default),
-        raw(
-          term.allowedValues.find(allowed_value => allowed_value.identifier == term.default).acronym,
-        ),
-      )
+      let default_value = term.allowedValues.find(allowed_value => allowed_value.identifier == term.default)
+      if default_value == none {
+        dict_todo(
+          "Default value not found in allowed values (needs to be an acronym): " + term.default,
+        )
+      } else {
+        link(
+          label("term_" + term.identifier + "_allowed_value_" + term.default),
+          raw(default_value.acronym),
+        )
+      }
     } else {
       raw(term.default)
     }
   ]
 
-  #text(term.description)
+  #text(
+    term.at("description", default: dict_todo("No description for this term")),
+  )
 
   #todo(
     "Link to types so that we're sure that every type is specified. In order to do so we will have to be able to strip [] for the link",
@@ -627,7 +642,9 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   === #text(contract.name) (#raw(contract.acronym))
   #label("contract_" + contract.identifier)
 
-  Coverage: #text(contract.coverage)
+  Coverage: #text(
+    contract.at("coverage", default: dict_todo("No coverage for this contract")),
+  )
 
   Family: #text(contract.family)
 
@@ -637,10 +654,10 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
 
   #todo("Relevant terms")
 
-  #let applicability = applicability_map.at(contract.identifier, default: ())
+  #let applicability = applicability_map.at(contract.identifier, default: (:))
 
   #if applicability.len() == 0 [
-    #todo("!! No applicability rules for this contract.")
+    #dict_todo("!! No applicability rules for this contract.")
   ] else [
     ==== Applicable terms
     #for term in terms.values() [
@@ -679,75 +696,6 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
     - #MD
     - #NT
     - #IPNR
-
-    #todo("I have no idea if this is correct:")
-
-    Allowed terms:
-    - Mandatory: #CT
-    - Mandatory: #SD
-    - Mandatory: #CNTRL
-    - Mandatory: #CRID
-    - Mandatory: #CID
-    - Optional: #CID
-    - Mandatory: #CPID
-    - Optional: #PRF
-    - Optional: #SEN
-    - Optional: #NPD
-    - Optional: #PPP
-    - Optional: #GRP
-    - Optional: #DQP
-    - Optional: #DQR
-    - Optional: #FEANX
-    - Optional: #FECL
-    - Optional: #FEB
-    - Optional: #FER
-    - Optional: #FEAC
-    - Optional: #IPANX
-    - Optional: #IPCL
-    - Mandatory: #IPNR
-    - Mandatory: #IPDC
-    - Optional: #IPAC
-    - Optional: #IPCED
-    - Optional: #IPPNT
-    - Mandatory: #CUR
-    - Mandatory: #CDD
-    - Mandatory: #IED
-    - Optional: #PDIED
-    - Mandatory: #MD
-    - Mandatory: #NT
-    - Optional: #PRD
-    - Mandatory: #PPRD
-    - Optional: #TD
-    - Mandatory: #PTD
-    - Optional: #CLA
-    - Mandatory: #SCMO
-    - Mandatory: #SCCDD
-    - Mandatory: #SCNT
-    - Mandatory: #SCIP
-    - Optional: #SCANX
-    - Optional: #SCCL
-    - Optional: #SCEF
-    - Optional: #MVO
-    - Optional: #OPXED
-    - Optional: #OPANX
-    - Optional: #OPCL
-    - Optional: #PYTP
-    - Optional: #PYRT
-    - Optional: #PPEF
-    - Optional: #RRANX
-    - Optional: #RRCL
-    - Mandatory: #RRSP
-    - Mandatory: #RRMO
-    - Optional: #RRLC
-    - Optional: #RRLF
-    - Optional: #RRPC
-    - Optional: #RRPF
-    - Optional: #RRPF
-    - Optional: #RRPNT
-    - Optional: #RRFIX
-    - Optional: #RRNXT
-    - Optional: #RRMLT
-    - Optional: #CURS
 
   ] else [
     #todo("Allowed events")
