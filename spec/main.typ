@@ -283,20 +283,22 @@ their implementation against arbitrary test cases.
 #show "should": raw("SHOULD")
 #show "should not": raw("SHOULD NOT")
 
-should, should not, must, must not, ... #todo("refer to that rfc") The key words
-must, must not, required, shall, shall not, should, should not, recommended,
-may, and optional in this document are to be interpreted as described in [RFC
-2119](https://datatracker.ietf.org/doc/html/rfc2119).
+The key words must, must not, required, shall, shall not, should, should not,
+recommended, may, and optional in this document are to be interpreted as
+described in #link("https://datatracker.ietf.org/doc/html/rfc2119)")[RFC 2119].
 
-== MIME
+== MIME types
 
 The ACTUS interchange format is suitable as an exchange format between
 applications or systems. The format is defined in terms of the MIME content
-types: `application/actus+json` or `application/actus+cbor`.
+types as specified in #link("https://datatracker.ietf.org/doc/html/rfc2046")[RFC 2046]:
+`application/actus+json` or `application/actus+cbor`.
 
-#todo(
-  "define encoding: UTF-8? Maybe not necessary because json is ascii? Maybe still necessary because cbor is not?",
-)
+=== Note on encoding
+
+When using the `application/actus+json` MIME type, the text encoding must be #link("https://datatracker.ietf.org/doc/html/rfc3629")[UTF-8 (see RFC 3629)] as
+specified by #link("https://datatracker.ietf.org/doc/html/rfc8259")[RFC 8259].
+The `application/actus+cbor` MIME type specifies its own non-textual encoding.
 
 #let examples(filename) = {
   heading("Examples:", level: 3)
