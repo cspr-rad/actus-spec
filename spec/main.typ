@@ -309,15 +309,16 @@ The `application/actus+cbor` MIME type specifies its own non-textual encoding.
   list(..json(validfile).map(example => {
     text(example.explanation + ":")
     linebreak()
-    raw(json.encode(example.value, pretty: false))
+    raw(json.encode(example.value, pretty: true))
   }))
   text("See ")
   raw(validfile)
   linebreak()
 
+  // TODO: Find a way to display thees
   text("The following values must not parse.")
   let invalidfile = "test-data/" + filename + "-invalid.json"
-  list(..json(validfile).map(example => {
+  list(..json(invalidfile).map(example => {
     text(example.explanation + ":")
     linebreak()
     raw(json.encode(example.value, pretty: false))
@@ -519,10 +520,37 @@ account with currency must have been defined in the same file.
 #examples("account-with-currency")
 
 == Contract <type_Contract>
-=== Terms
+=== Contract Terms
+
+A contract term is a value that configures a contract. They are detailed further
+in the terms section (see @terms).
+
+=== Contracts
+
+A contract is an object where the keys are the names of terms and the values are
+their corresponding values. They are detailed further in the contracts section
+(see @contracts).
+
+#todo("Make sure this is a valid contract")
+#examples("contract")
+
 === Events
+
+An event is an object with the following fields:
+
+#todo("figure out what needs to be in these?")
+#examples("event")
+
 === Schedules
-=== State
+
+#todo("What are schedules?")
+
+=== State variables
+
+A contract term is a value that configures a contract. They are detailed further
+in the state variables section (see @state_variables).
+
+#todo("examples")
 
 == ACTUS file
 
@@ -531,13 +559,16 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
 
 #todo("examples")
 
-== Cashflows
+== Tests
 
+An actus test is a combination of an actus file and the expected results.
+
+#todo("examples")
 #todo(
   "Define an exact format for the results of computing results of actus contracts",
 )
 
-= Terms
+= Terms <terms>
 
 #for term in terms.values() [
   === #text(term.name) (#raw(term.acronym))
@@ -601,7 +632,7 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   #text(event.description)
 ]
 
-= State Variables
+= State Variables <state_variables>
 
 #for state_variable in state_variables.values() [
   === #text(state_variable.name) (#raw(state_variable.acronym))
@@ -628,7 +659,7 @@ An actus file defines a collection of currencies (#raw("currencies")) (see
   ]
 ]
 
-= Contracts
+= Contracts <contracts>
 
 #for contract in contracts.values() [
   === #text(contract.name) (#raw(contract.acronym))
