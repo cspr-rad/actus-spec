@@ -4,6 +4,13 @@ This is a second version of the ACTUS specification.
 It is intended to be the new "source of truth".
 Where previous specifications have been inconsistent and ambiguous, this specification aims to be unambiguous and consistent.
 
+## Status of this document
+
+The purpose of this document in its current form is to show what a new version of a specification could look like and how it could be constructed.
+It is not sound, complete, or authoritative.
+
+If this new way of specifying is adopted, this specification will be completed, corrected, and updated before becoming authoritative.
+
 
 ## Consistency
 
