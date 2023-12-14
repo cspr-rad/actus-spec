@@ -56,6 +56,14 @@
               types = [ "file" ];
               files = "\\.(typ)$";
             };
+            build = {
+              enable = true;
+              entry = "${pkgs.writeShellScript "compile pre-commit" ''
+                nix build .
+                cp result spec-draft.pdf
+                chmod 764 spec-draft.pdf
+              ''}";
+            };
           };
         };
       };
