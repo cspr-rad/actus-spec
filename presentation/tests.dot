@@ -1,0 +1,21 @@
+digraph tests {
+  rankdir = LR;
+  subgraph cluster_spec {
+    label = "Specification"
+    pdf [ label = "spec.pdf", shape = box ];
+    tests [ label = "tests", shape = cylinder ];
+
+    pdf -> tests;
+  }
+
+  java [ label = "Java impl", shape = note ];
+  rust [ label = "Rust impl", shape = note ];
+
+
+  tests -> java [ style = dashed ];
+  pdf -> java;
+  tests -> rust [ style = dashed ];
+  pdf -> rust;
+
+
+}

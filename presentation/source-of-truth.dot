@@ -1,0 +1,12 @@
+digraph truth {
+  rankdir = LR;
+  source [ label = "Source of truth", shape = octagon ];
+
+  impls [ label = "Implementation(s)", shape = note ];
+  tests [ label = "Tests", shape = note ];
+  docs [ label = "Documentation", shape = note ];
+
+  source -> impls
+  source -> tests
+  source -> docs
+}
