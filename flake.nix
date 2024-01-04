@@ -5,14 +5,12 @@
     # recent version of typst: 0.8 instead of 0.4
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    typstfmt.url = "github:astrale-sharp/typstfmt";
   };
 
   outputs =
     { self
     , nixpkgs
     , pre-commit-hooks
-    , typstfmt
     }:
     let
       system = "x86_64-linux";
@@ -50,12 +48,6 @@
               types = [ "file" ];
               files = "\\.(json)$";
             };
-            typstfmt = {
-              enable = true;
-              entry = "${typstfmt.packages.${system}.default}/bin/typstfmt";
-              types = [ "file" ];
-              files = "\\.(typ)$";
-            };
             build = {
               enable = true;
               entry = "${pkgs.writeShellScript "compile pre-commit" ''
@@ -72,11 +64,11 @@
         buildInputs = (with pkgs; [
           typst
           jsonfmt
-          typstfmt.packages.${system}.default
         ]) ++ (with pre-commit-hooks.packages.${system};
           [
             nixpkgs-fmt
             deadnix
+            typst-fmt
           ]);
         shellHook = self.checks.${system}.pre-commit.shellHook;
       };
