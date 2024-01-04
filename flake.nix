@@ -5,37 +5,61 @@
     # recent version of typst: 0.8 instead of 0.4
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    typstPackages.url = "github:typst/packages";
+    typstPackages.flake = false;
+    typstnix.url = "github:NorfairKing/typst.nix";
   };
 
   outputs =
     { self
     , nixpkgs
     , pre-commit-hooks
+    , typstPackages
+    , typstnix
     }:
     let
       system = "x86_64-linux";
       overlay = final: _: {
-        actusSpec = final.stdenv.mkDerivation {
+        actusSpec = final.makeTypstDocument {
           name = "actus-spec.pdf";
+          main = "main.typ";
           src = ./spec;
-          buildInputs = [
-            final.typst
+        };
+        actusSpecPresentation = final.makeTypstDocument {
+          name = "actus-spec-presentation.pdf";
+          main = "presentation.typ";
+          src = ./presentation;
+          packagesRepo = typstPackages;
+          typstDependencies = [
+            {
+              name = "polylux";
+              version = "0.3.1";
+            }
+            {
+              name = "diagraph";
+              version = "0.2.0";
+            }
           ];
-          buildCommand = ''
-            typst compile $src/main.typ $out
-          '';
         };
       };
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ overlay ];
+        overlays = [
+          typstnix.overlays.${system}
+          overlay
+        ];
       };
     in
     {
       overlays.${system} = overlay;
-      packages.${system}.default = pkgs.actusSpec;
+      packages.${system} = {
+        default = pkgs.actusSpec;
+        spec = pkgs.actusSpec;
+        presentation = pkgs.actusSpecPresentation;
+      };
       checks.${system} = {
-        release = self.packages.${system}.default;
+        spec = self.packages.${system}.spec;
+        presentation = self.packages.${system}.presentation;
         shell = self.devShells.${system}.default;
         pre-commit = pre-commit-hooks.lib.${system}.run {
           src = ./.;
@@ -51,9 +75,12 @@
             build = {
               enable = true;
               entry = "${pkgs.writeShellScript "compile pre-commit" ''
-                nix build .
+                nix build .#spec
                 cp result spec-draft.pdf
                 chmod 764 spec-draft.pdf
+                nix build .#presentation
+                cp result presentation-draft.pdf
+                chmod 764 presentation-draft.pdf
               ''}";
             };
           };

@@ -568,6 +568,10 @@ An actus test is a combination of an actus file and the expected results.
   "Define an exact format for the results of computing results of actus contracts",
 )
 
+== Annuity Amount Function
+
+$ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1)1 + r Y (t_i, t_(i+1)), 1 + sum_(i = 1)^(m - 1) product_(j = i)^(m - 1) 1 + r Y (t_j, t_(j+1))) $
+
 = Terms <terms>
 
 #for term in terms.values() [

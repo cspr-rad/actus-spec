@@ -1,0 +1,34 @@
+digraph spec {
+  rankdir=LR;
+
+  xlsx [ label = "actus-dictionary.xlsx" ];
+
+
+  subgraph cluster_repo {
+    label = "GitHub Repository";
+    dictionary [ label = "dictionary.json" ];
+    testdata [ label = "test-data" ];
+    typ [ label = "spec.typ" ];
+  }
+  typst [ label = "Typst", shape = box ];
+  pdf [ label = "spec.pdf" ] ;
+
+  { rank=same
+    impl1 [ label = "Implementation 1", shape = note ];
+    impl2 [ label = "Implementation 2", shape = note ];
+
+  }
+
+  dictionary -> xlsx [ style = dotted ];
+  testdata -> typst;
+  typ -> typst;
+  dictionary -> typst;
+  typst -> pdf;
+
+  pdf -> impl1;
+  testdata -> impl1 [ style = dashed ];
+  dictionary -> impl1;
+  pdf -> impl2;
+  testdata -> impl2 [ style = dashed ];
+  dictionary -> impl2;
+}
