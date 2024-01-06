@@ -74,6 +74,8 @@
   - Fast incremental compilation           
   - Excellent error messages  
 
+  This presentation is written in Typst!
+
   #align(center, link("https://typst.app/"))
 ]
 
@@ -89,6 +91,24 @@
     #set text(size: 11pt)
     #render(read("proposal.dot"))
   ]
+]
+
+#slide[
+  = Current situation
+
+  - Draft specification 2.0 ready for this presentation
+  - Need a big "OK, let's do it"
+]
+
+#slide[
+  = Future work
+
+  - Describe what tests look like
+  - Continue specification
+    - If we choose typst: Write formulas in typst
+    - If we choose LaTeX, redo typst work in LaTeX
+  - Later: Test generator
+  - Later: Documentation generator
 ]
 
 #slide[

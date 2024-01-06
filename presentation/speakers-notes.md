@@ -99,6 +99,39 @@ Note that all arrows are going from the GitHub repository outward.
 
 The source of truth here is the combination of the dictionary data, the specification in typst source, and the manually written test data.
 
+# Current situation
+
+We currently have a draft specification document written in typst, as well as
+some proposed test data.
+The draft specification is ready enough to make the decision about which of
+these proposals to adopt, but not for any other purpose.
+
+To continue this work, we need a big "OK, let's do it", and maybe some
+commitments about who wants to help, if anyone does.
+I wouldn't mind doing all the work, but we still need to come to an agreement
+to adopt the new specification together.
+
+# Future work
+
+Here are some next steps that we can take when/if we agree to go this way.
+The first important step will be to describe what we want a test to look like.
+I would like to work together with someone who knows about the current test
+data to do that.
+
+Next comes some annoying work, but maybe we can automate some of it.
+If we choose to use Typst, then we need to rewrite the LaTeX formulas in Typst.
+I wouldn't mind doing this myself because I have written a LOT of LaTeX.
+If instead we choose to use LaTeX, then we need to rewrite what we currently
+have in Typst, in LaTeX.
+I'd prefer to not do this because LaTeX makes what we've done in Typst quite
+complicated.
+
+Once tests are specified, we can write a test generator to keep implementations
+in agreement.
+
+We can then also make a documentation generator that can make a nice website
+from the dictionary and test data.
+
 # References
 
 Here are some more references.
