@@ -14,7 +14,7 @@
 #enable-handout-mode(true)
 
 #title-slide(
-  title: "The mechanics of ACTUS Specification 2.0"
+  title: "Towards an ACTUS Specification 2.0"
   , authors: [Casper Association: Tom Sydney Kerckhove]
   , date: "2024-01-17"
 )

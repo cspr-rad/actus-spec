@@ -22,6 +22,22 @@ We construct the specification (pdf) to be consistent with that data by generati
 
 ## Writing
 
+### Dependencies
+
+#### With Nix
+
+1. Install [Nix](https://nixos.org/download)
+
+That's it, Nix handles the rest.
+
+#### Without Nix
+
+1. Install [Typst](https://github.com/typst/typst#installation)
+1. Ignore the mentions of `direnv` and `feedback` below.
+
+
+### Feedback loop
+
 1. Enter the dev shell
 
    With `direnv`:
