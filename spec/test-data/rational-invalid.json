@@ -28,7 +28,13 @@
     "explanation": "Negative denominator"
   },
   {
+    "value": [
+      -17
+    ],
+    "explanation": "A list of only one number instead of two"
+  },
+  {
     "value": -17.5,
-    "explanation": "One number, not two"
+    "explanation": "A single number, not in a list"
   }
 ]

@@ -8,6 +8,10 @@
     "explanation": "24th hour does not exist"
   },
   {
+    "value": "23:59:60",
+    "explanation": "Leap seconds are not considered"
+  },
+  {
     "value": "1:00:00",
     "explanation": "No zero-padding for the hour"
   },

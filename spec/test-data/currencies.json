@@ -1,0 +1,23 @@
+[
+  {
+    "value": {
+      "USD": {
+        "symbol": "USD",
+        "factor": 100
+      },
+      "CHF": {
+        "factor": 20
+      },
+      "INR": {
+        "symbol": "INR",
+        "factor": 1,
+        "thisfieldisnotrecognised": 42
+      },
+      "BTC": {
+        "symbol": "BTC",
+        "factor": 100000000
+      }
+    },
+    "explanation": "Example currencies together in a map."
+  }
+]

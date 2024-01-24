@@ -2,14 +2,12 @@
   {
     "value": {
       "symbol": "USD",
-      "uid": "USD",
       "factor": 100
     },
-    "explanation": "Currency with symbol _and_ uid, with minimal quantisation 0.01"
+    "explanation": "Currency with symbol, with minimal quantisation 0.01"
   },
   {
     "value": {
-      "uid": "CHF",
       "factor": 20
     },
     "explanation": "Currency with only a uid, which will be used as its symbol, with minimal quantisation 0.05"
@@ -17,9 +15,10 @@
   {
     "value": {
       "symbol": "INR",
-      "factor": 1
+      "factor": 1,
+      "thisfieldisnotrecognised": 42
     },
-    "explanation": "Currency with only a symbol, which will be used as its uid, with minimal quantisation 1"
+    "explanation": "Currency with minimal quantisation 1 and an unrecognised field that MUST be ignored"
   },
   {
     "value": {

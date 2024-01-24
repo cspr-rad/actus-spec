@@ -8,12 +8,6 @@
   },
   {
     "value": {
-      "factor": 20
-    },
-    "explanation": "No symbol or uid"
-  },
-  {
-    "value": {
       "symbol": "INR"
     },
     "explanation": "No quantisation factor"

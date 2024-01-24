@@ -1,6 +1,6 @@
 [
   {
-    "explanation": "ann01",
+    "explanation": "An example annuity contract",
     "value": {
       "contractType": "ANN",
       "contractID": "ann01",

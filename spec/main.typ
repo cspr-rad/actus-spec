@@ -304,9 +304,10 @@ The `application/actus+cbor` MIME type specifies its own non-textual encoding.
 #let examples(filename) = {
   heading("Examples:", level: 3)
 
-  text("The following values must parse.")
   let validfile = "test-data/" + filename + ".json"
-  list(..json(validfile).map(example => {
+  let valid_examples = json(validfile)
+  text("The following values must parse.")
+  list(..valid_examples.map(example => {
     text(example.explanation + ":")
     linebreak()
     raw(json.encode(example.value, pretty: true))
@@ -314,17 +315,20 @@ The `application/actus+cbor` MIME type specifies its own non-textual encoding.
   text("See ")
   raw(validfile)
   linebreak()
+  linebreak()
 
-  // TODO: Find a way to display thees
-  text("The following values must not parse.")
   let invalidfile = "test-data/" + filename + "-invalid.json"
-  list(..json(invalidfile).map(example => {
-    text(example.explanation + ":")
-    linebreak()
-    raw(json.encode(example.value, pretty: false))
-  }))
-  text("See ")
-  raw(invalidfile)
+  let invalid_examples = json(invalidfile);
+  if invalid_examples.len() != 0 {
+    text("The following values must not parse.")
+    list(..invalid_examples.map(example => {
+      text(example.explanation + ":")
+      linebreak()
+      raw(json.encode(example.value, pretty: false))
+    }))
+    text("See ")
+    raw(invalidfile)
+  }
 }
 
 = Data Types
@@ -349,7 +353,7 @@ Unrecognised values must be rejected.
 
 == Integer <type_Integer>
 
-An integer is an integer number. The integer is represented as a JSON number.
+An Integer is an integer number. The integer is represented as a JSON number.
 Parsers should reject numbers with a decimal point and must reject numbers with
 any digits past the decimal point.
 
@@ -362,7 +366,7 @@ Integers must have no range restriction.
 A natural is a natural number. It is an integer (see @type_Integer) with the
 additional restriction that it must not be negative.
 
-Naturals must have no range restriction.
+Naturals must not have a range restriction.
 
 #examples("natural")
 
@@ -375,7 +379,7 @@ Integers (see @type_Integer). The first is the numerator and the second the
 denominator. The denominator must not be zero and should not be negative.
 Rational numbers should be specified in normalised form.
 
-The integers that make up a rational must have no range restriction.
+The integers that make up a rational must not have any range restrictions.
 
 #examples("rational")
 
@@ -384,7 +388,7 @@ The integers that make up a rational must have no range restriction.
 A positive rational number is a rational number (see @type_Rational) except
 instead of a pair of integers it is a pair of naturals (see @type_Natural).
 
-The naturals that make up a positive rational must have no range restriction.
+The naturals that make up a positive rational must not have any range restrictions.
 
 #examples("positive-rational")
 
@@ -403,22 +407,22 @@ A time of day is specified in the form #raw("YYYY-MM-DD").
 
 #examples("day")
 
-== Time of day
+== Second of day <type_SecondOfDay>
 
-A time of day is represented as an unsigned integral number of seconds since the
+A second of day is represented as an unsigned integral number of seconds since the
 start of the day. This number must be between $0$ and $86399$ ($24 dot 60 dot 60$).
 
-A time of day is specified in the form #raw("HH:MM:SS").
+A second of day is specified in the form #raw("HH:MM:SS").
 
-#examples("time-of-day")
+#examples("second-of-day")
 
-== Local datetime <type_LocalDatetime>
+== Local second <type_LocalSecond>
 
-A datetime is a tuple of a day and a time of day.
+A datetime is a tuple of a day and a second of day.
 
-A time of day is specified in the form #raw("YYYY-MM-DD HH:MM:SS").
+A second of day is specified in the form #raw("YYYY-MM-DD HH:MM:SS").
 
-#examples("local-date-time")
+#examples("local-second")
 
 == Timezone offset
 
@@ -439,7 +443,7 @@ offset, to timezone offsets.
 
 == Timestamp <type_Timestamp>
 
-A timestamp is a local datetime in the UTC timezone. See @type_LocalDatetime
+A timestamp is a local second in the UTC timezone. See @type_LocalSecond
 #todo(
   "What does a timestamp mean in the actus spec? which granularity? which Timezone? leap seconds? Are we sure it's not a 'Day' instead?",
 )
@@ -463,12 +467,14 @@ with non-zero decimals must be rejected.
 
 == Currency <type_Currency>
 
-A currency must specify its quantisation factor (#raw("factor")). A currency
-must specify either a unique identifier (#raw("uid")) or a symbol (#raw("symbol")).
-A currency that has a unique identifier may also specify a symbol. The symbol of
-a currency that specifies a symbol but not a unique identifier must be unique
-within one `application/actus+json` or `application/actus+cbor` file. In such a
-case the symbol is used as the unique identifier.
+A currency must specify its quantisation factor (#raw("factor")).
+
+A currency is identified by its #raw("uid"), which is the key in the map of
+currencies in the ACTUS file that it is defined in.
+See @type_Currencies.
+As such, these unique identifiers must be unique within an ACTUS file.
+A currency may also specify a symbol.
+If no symbol is defined, the #raw("uid") may be used as the symbol.
 
 This specification does not define how amounts of money are presented to users.
 Many different ways of doing so are in use already, so this specification allows
@@ -478,13 +484,20 @@ must be ignored.
 
 #examples("currency")
 
+== Currencies <type_Currencies>
+
+A map of currency symbol to currency. See @type_Currency
+
+#examples("currencies")
+
 == Positive amount of money <type_Amount>
 
 Amounts of money must be represented as a positive integral number of a given
-minimal quantisations of its currency. (An amount of money must not be
-represented as a floating point number, or an arbitrary-precision rational
-number.) For example, one USD can be represented as `100` cents if the
-quantisation factor is chosen to be 100.
+minimal quantisations of its currency.
+An amount of money must not be represented as a binary floating point number, a
+decimal floating point number, or an arbitrary-precision rational number.
+For example, one USD can be represented as `100` cents if the quantisation
+  factor is chosen to be 100.
 
 An amount must have a range of at least 64 bits ($[0 .. 2^64]$) and may be
 specified using an unsigned 64-bit integer. For example, `u64` in Rust or
@@ -519,13 +532,13 @@ account with currency must have been defined in the same file.
 
 #examples("account-with-currency")
 
-== Contract <type_Contract>
+== Contract
 === Contract Terms
 
 A contract term is a value that configures a contract. They are detailed further
 in the terms section (see @terms).
 
-=== Contracts
+=== Contract <type_Contract>
 
 A contract is an object where the keys are the names of terms and the values are
 their corresponding values. They are detailed further in the contracts section
@@ -533,6 +546,13 @@ their corresponding values. They are detailed further in the contracts section
 
 #todo("Make sure this is a valid contract")
 #examples("contract")
+
+=== Contracts <type_Contracts>
+
+Contracts can be put together in a map from contract identifier to contract.
+If a contract identifier is specified in the contract as well, then it must match its identifier.
+
+#examples("contracts")
 
 === Events
 
@@ -552,12 +572,12 @@ in the state variables section (see @state_variables).
 
 #todo("examples")
 
-== ACTUS file
+== ACTUS file <type_File>
 
 An actus file defines a collection of currencies (#raw("currencies")) (see
-@type_Currency)) and ACTUS contracts (#raw("contracts")) (see @type_Contract).
+@type_Currencies)) and ACTUS contracts (#raw("contracts")) (see @type_Contracts).
 
-#todo("examples")
+#examples("file")
 
 == Tests
 
