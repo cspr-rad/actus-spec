@@ -364,7 +364,7 @@ Integers must have no range restriction.
 == Natural <type_Natural>
 
 A natural is a natural number. It is an integer (see @type_Integer) with the
-additional restriction that it must not be negative.
+additional restriction that it must not be negative (but includes zero).
 
 Naturals must not have a range restriction.
 
@@ -400,10 +400,11 @@ The naturals that make up a positive rational must not have any range restrictio
 
 == Day
 
-A day is represented as an unsigned integral number of days since 1970-01-01.
-#todo("Specify the minimum range for a datatype that is used.")
+A day is represented (internally) as an unsigned integral number of days since
+1970-01-01.
+#todo("Specify the minimum range for a data type that is used.")
 
-A time of day is specified in the form #raw("YYYY-MM-DD").
+A day is specified in the form #raw("YYYY-MM-DD").
 
 #examples("day")
 
@@ -426,10 +427,11 @@ A second of day is specified in the form #raw("YYYY-MM-DD HH:MM:SS").
 
 == Timezone offset
 
-A timezone offset is represented as an integral number of minutes away from GMT
-Note that a timezone offset is only valid within a timezone at a given time
+A timezone offset is represented (internally) as an integral number of minutes
+away from GMT. Note that a timezone offset is only valid within a timezone at a
+given time.
 
-A time of day is specified in the form #raw("[+-]HH:MM").
+A timezone offset is specified in the form #raw("[+-]HH:MM").
 
 #examples("time-zone-offset")
 
@@ -460,8 +462,8 @@ is then 100, because 100 cents equals one USD.
 A quantisation factor must be positive integral number but must not have a range
 greater than 32 bits ($[0 .. 2^32]$) and must not be zero.
 
-Numbers specified with a decimal point should be rejected. Numbers specified
-with non-zero decimals must be rejected.
+Numbers specified with a decimal point should be rejected. Non-integers must be
+rejected.
 
 #examples("quantisation-factor")
 
@@ -492,16 +494,16 @@ A map of currency symbol to currency. See @type_Currency
 
 == Positive amount of money <type_Amount>
 
-Amounts of money must be represented as a positive integral number of a given
-minimal quantisations of its currency.
+Positive amounts of money must be represented (internally) as a positive
+integral number of a given minimal quantisations of its currency.
 An amount of money must not be represented as a binary floating point number, a
 decimal floating point number, or an arbitrary-precision rational number.
 For example, one USD can be represented as `100` cents if the quantisation
-  factor is chosen to be 100.
+factor is chosen to be 100.
 
-An amount must have a range of at least 64 bits ($[0 .. 2^64]$) and may be
-specified using an unsigned 64-bit integer. For example, `u64` in Rust or
-`Word64` in Haskell.
+A positive amount must have a range of at least 64 bits ($[0 .. 2^64)$) and may
+be specified using an unsigned 64-bit integer, e.g. `u64` in Rust or `Word64`
+in Haskell.
 
 #examples("amount")
 
@@ -510,7 +512,7 @@ specified using an unsigned 64-bit integer. For example, `u64` in Rust or
 An account of money is like an amount of money (see @type_Amount) but without
 the restriction that it must be positive.
 
-An account must have a range of at least 65 bits ($[-2^64 .. 2^64]$).
+An account must have a range of at least 65 bits ($[-2^64 .. 2^64)$).
 
 #examples("account")
 
@@ -590,7 +592,7 @@ An actus test is a combination of an actus file and the expected results.
 
 == Annuity Amount Function
 
-$ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1)1 + r Y (t_i, t_(i+1)), 1 + sum_(i = 1)^(m - 1) product_(j = i)^(m - 1) 1 + r Y (t_j, t_(j+1))) $
+$ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1) (1 + r Y (t_i, t_(i+1))), 1 + sum_(i = 1)^(m - 1) product_(j = i)^(m - 1) (1 + r Y (t_j, t_(j+1)))) $
 
 = Terms <terms>
 
