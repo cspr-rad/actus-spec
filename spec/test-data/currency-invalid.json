@@ -2,7 +2,7 @@
   {
     "value": {
       "symbol": "USD",
-      "factor": 100.0
+      "factor": 100.5
     },
     "explanation": "Non-integral quantisation factor"
   },

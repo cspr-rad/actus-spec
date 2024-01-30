@@ -8,10 +8,6 @@
     "explanation": "24th hour does not exist"
   },
   {
-    "value": "23:59:60",
-    "explanation": "Leap seconds are not considered"
-  },
-  {
     "value": "1:00:00",
     "explanation": "No zero-padding for the hour"
   },
@@ -22,5 +18,9 @@
   {
     "value": "05:00",
     "explanation": "No seconds"
+  },
+  {
+    "value": "12:34:56.789",
+    "explanation": "Too precise"
   }
 ]

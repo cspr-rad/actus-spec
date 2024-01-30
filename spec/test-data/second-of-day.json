@@ -14,5 +14,9 @@
   {
     "value": "23:59:59",
     "explanation": "One second to midnight"
+  },
+  {
+    "value": "23:59:60",
+    "explanation": "Leap second"
   }
 ]
