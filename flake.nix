@@ -19,29 +19,38 @@
     }:
     let
       system = "x86_64-linux";
-      overlay = final: _: {
-        actusSpec = final.makeTypstDocument {
-          name = "actus-spec.pdf";
-          main = "main.typ";
-          src = ./spec;
-        };
-        actusSpecPresentation = final.makeTypstDocument {
-          name = "actus-spec-presentation.pdf";
-          main = "presentation.typ";
-          src = ./presentation;
-          packagesRepo = typstPackages;
-          typstDependencies = [
-            {
-              name = "polylux";
-              version = "0.3.1";
-            }
-            {
-              name = "diagraph";
-              version = "0.2.0";
-            }
+
+
+      overlay = final: _:
+        let
+          specDocument = final.makeTypstDocument {
+            name = "actus-spec.pdf";
+            main = "main.typ";
+            src = ./spec;
+          };
+        in
+        {
+          actusSpec = final.linkFarm "actus-spec" [
+            { name = "actus-spec.pdf"; path = specDocument; }
+            { name = "test-data"; path = ./spec/test-data; }
           ];
+          actusSpecPresentation = final.makeTypstDocument {
+            name = "actus-spec-presentation.pdf";
+            main = "presentation.typ";
+            src = ./presentation;
+            packagesRepo = typstPackages;
+            typstDependencies = [
+              {
+                name = "polylux";
+                version = "0.3.1";
+              }
+              {
+                name = "diagraph";
+                version = "0.2.0";
+              }
+            ];
+          };
         };
-      };
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
