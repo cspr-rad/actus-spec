@@ -364,7 +364,7 @@ Integers must have no range restriction.
 == Natural <type_Natural>
 
 A natural is a natural number. It is an integer (see @type_Integer) with the
-additional restriction that it must not be negative (but includes zero).
+additional restriction that it must not be negative (but may be zero).
 
 Naturals must not have a range restriction.
 
@@ -411,7 +411,7 @@ A day is specified in the form #raw("YYYY-MM-DD").
 == Second of day <type_SecondOfDay>
 
 A second of day is represented as an unsigned integral number of seconds since the
-start of the day. This number must be between $0$ and $86399$ ($24 dot 60 dot 60$).
+start of the day. This number must be between $0$ and $86400$ ($24 dot 60 dot 60$).
 
 A second of day is specified in the form #raw("HH:MM:SS").
 
@@ -462,8 +462,8 @@ is then 100, because 100 cents equals one USD.
 A quantisation factor must be positive integral number but must not have a range
 greater than 32 bits ($[0 .. 2^32]$) and must not be zero.
 
-Numbers specified with a decimal point should be rejected. Non-integers must be
-rejected.
+Numbers specified with a decimal point should be rejected.
+Non-integers must be rejected.
 
 #examples("quantisation-factor")
 
@@ -501,9 +501,11 @@ decimal floating point number, or an arbitrary-precision rational number.
 For example, one USD can be represented as `100` cents if the quantisation
 factor is chosen to be 100.
 
-A positive amount must have a range of at least 64 bits ($[0 .. 2^64)$) and may
+A positive amount must have a range of at least 64 bits $[0 .. 2^64-1]$ and may
 be specified using an unsigned 64-bit integer, e.g. `u64` in Rust or `Word64`
 in Haskell.
+
+That means an implementation must be able to roundtrip the json value `18446744073709551615`.
 
 #examples("amount")
 
@@ -512,7 +514,9 @@ in Haskell.
 An account of money is like an amount of money (see @type_Amount) but without
 the restriction that it must be positive.
 
-An account must have a range of at least 65 bits ($[-2^64 .. 2^64)$).
+An account must have a range of at least 65 bits $[-(2^64-1) .. (2^64-1)]$.
+
+That means an implementation must be able to roundtrip the json value `18446744073709551615` and its negation.
 
 #examples("account")
 
