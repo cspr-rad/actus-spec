@@ -306,20 +306,31 @@ The `application/actus+cbor` MIME type specifies its own non-textual encoding.
 
   let validfile = "test-data/" + filename + ".json"
   let valid_examples = json(validfile)
-  text("The following values must parse.")
-  list(..valid_examples.map(example => {
-    text(example.explanation + ":")
-    linebreak()
-    raw(json.encode(example.value, pretty: true))
-  }))
-  text("See ")
-  raw(validfile)
+  if valid_examples.len() == 0 {
+    todo("Come up with valid examples and put them in")
+    raw(validfile)
+    "."
+  } else {
+    text("The following values must parse.")
+    list(..valid_examples.map(example => {
+      text(example.explanation + ":")
+      linebreak()
+      raw(json.encode(example.value, pretty: true))
+    }))
+    text("See ")
+    raw(validfile)
+  }
+
   linebreak()
   linebreak()
 
   let invalidfile = "test-data/" + filename + "-invalid.json"
   let invalid_examples = json(invalidfile);
-  if invalid_examples.len() != 0 {
+  if invalid_examples.len() == 0 {
+    todo("Come up with invalid examples and put them in")
+    raw(invalidfile)
+    "."
+  } else {
     text("The following values must not parse.")
     list(..invalid_examples.map(example => {
       text(example.explanation + ":")
@@ -648,6 +659,11 @@ $ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1) (1 + r Y (t_i, t_(i+1))), 
         #text(allowed_value.description)
 
     ]
+  ]
+
+  // TODO make examples for all terms
+  #if (term.identifier == "contractID") [
+    #examples("terms/" + term.identifier)
   ]
 ]
 
