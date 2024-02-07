@@ -737,7 +737,7 @@ $ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1) (1 + r Y (t_i, t_(i+1))), 
       #let rule = applicability.at(term.identifier, default: "")
       #if rule != "" [
         #let rule_description = if rule == "x" [ Optional ] else { if rule == "NN" [ Required ] else { text(rule) } }
-        - #link(label("term_" + term.identifier), text(term.name)): #text(rule_description)
+        - #link(label("term_" + term.identifier), text[#(term.name) (#raw(term.identifier))]): #text(rule_description)
       ]
     ]
   ]
@@ -783,5 +783,10 @@ $ A(s,T,n,a,r) = (n + a) frac(product_(i = 1)^(m - 1) (1 + r Y (t_i, t_(i+1))), 
   #todo("Variable initialisation")
 
   #todo("State Transition & Payoff function")
+
+  // TODO make examples for all contracts
+  #if (contract.identifier == "annuity") [
+    #examples("contracts/" + contract.identifier)
+  ]
 ]
 

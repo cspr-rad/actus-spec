@@ -1,0 +1,21 @@
+[
+  {
+    "value": {
+      "contractID": "Example",
+      "contractRole": "TODO",
+      "contractType": "TODO",
+      "contractDealDate": "TODO",
+      "contractRole": "TODO",
+      "contractType": "TODO",
+      "counterpartyID": "TODO",
+      "creatorID": "TODO",
+      "currency": "TODO",
+      "dayCountConvention": "TODO",
+      "endOfMonthConvention": "TODO",
+      "initialExchangeDate": "TODO",
+      "nominalinterestRate": "TODO",
+      "notionalPrincipal": "TODO"
+    },
+    "explanation": "Minimal annuity contract"
+  }
+]
