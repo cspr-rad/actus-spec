@@ -1,0 +1,12 @@
+[
+  {
+    "value": {
+      "id": "example",
+      "arguments": {
+        "type": "natural"
+      },
+      "value": 3
+    },
+    "explanation": "Missing type"
+  }
+]

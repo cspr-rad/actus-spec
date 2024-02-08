@@ -1,0 +1,12 @@
+[
+  {
+    "value": {
+      "id": "example",
+      "result": {
+        "parses": false,
+        "rendered": null
+      }
+    },
+    "explanation": "The expected test result for the example test above"
+  }
+]

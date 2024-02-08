@@ -1,0 +1,13 @@
+[
+  {
+    "value": {
+      "id": "example",
+      "type": "parse",
+      "arguments": {
+        "type": "contractID"
+      },
+      "value": null
+    },
+    "explanation": "A parsing test that the test harness will expect to fail"
+  }
+]
