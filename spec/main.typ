@@ -271,7 +271,7 @@ consistency, a lack of ambiguity, and helping with practical implementations.
 The specification describes multiple contract types. For each contract type, it
 first describes the specification, then examples, and finally test cases. These
 test cases are machine readible such that each implementation can use them to
-test itself. We also provide a test harness that any implementor can use to test
+test itself. We also describe a test harness that any implementor can use to test
 their implementation against arbitrary test cases.
 
 = Prelude
@@ -605,15 +605,16 @@ An actus test is a combination of an actus file and the expected results.
   "Define an exact format for the results of computing results of actus contracts",
 )
 
-== Test harness
+== Specification tester and test harness
 
 This standard specifies the workings of a test harness.
-A test harness is a program that can test an implementation of this standard.
+A test harness is and application that exposes the following test harness api to allow an implementation to be tested.
+A specification tester is a program that can test an implementation of this standard by interacting with such a test harness.
 To allow for maximally interoperable implementations and language agnostic
 testing, the test harness communicates over the stdin and stdout streams.
 
-A test harness may support only some types of tests.
-An implementation must be able to handle at least every one of the following tests.
+A specification tester may support only some types of tests.
+A test harness must be able to handle at least every one of the following tests.
 
 === Test input
 
@@ -625,7 +626,7 @@ A test is a JSON object with these values:
   This key may be omitted if there are no arguments.
 - The `value` key that contains the value upon which the test is to be executed.
 
-For every test that it generates, the test harness must know the expected
+For every test that it generates, the specification tester must know the expected
   result, but must not make this available in the test.
 
 #examples("general-test")
@@ -641,20 +642,20 @@ The exact shape of the `result` value will depend on which type of test the resu
 
 #examples("general-test-result")
 
-=== Test harness session
+=== Test session
 
-A test harness interacts with an implementation by connecting to the standard input and standard output streams of the implementation.
-The test harness sends newline-delimited test input JSON objects to the implementation on stdin.
-It expects to read test newline-delimited test output JSON objects from the implementation on stdout.
+A specification tester interacts with a test harness by connecting to the standard input and standard output streams of the test harness.
+The specification tester sends newline-delimited test input JSON objects to the test harness on stdin.
+It expects to read test newline-delimited test output JSON objects from the test harness on stdout.
 
-An implementation may send test results in a different order than the test harness sent the corresponding inputs.
-(This allows for parallel testing.)
+A test harness may send test results in a different order than the tester sent the corresponding inputs.
+(This allows for parallel testing without extra bookkeeping on the test harness' side.)
 
-The result of a test harness session is either a 0 (success) or nonzero (failure) exit code.
-It may report additional details on the standard error stream.
+The result of a test session is either a 0 (success) or nonzero (failure) exit code.
+The tester may report additional details on the standard error stream.
 
-A test harness may fail immediately upon receiving the first incorrect test result but may continue to gather more test failures first as well.
-A test harness must fail if the implementation failed to produce a result for every test.
+A specification tester may fail immediately upon receiving the first incorrect test result but may continue to gather more test failures first as well.
+A specification tetser must fail if the implementation failed to produce a result for every test.
 This could be because the implementation crashed or because it "forgot" to perform a test.
 
 === Parsing test
