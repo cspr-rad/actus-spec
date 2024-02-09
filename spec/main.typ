@@ -637,6 +637,9 @@ A test result is a JSON object with these values:
 
 - The `id` key to identify which test the results corresponds to.
 - The `result` key with the test-specific result.
+  This key may be absent if the test passed.
+- An `error` key with an error that the test harness might have run into.
+  This key must be absent if the test passed.
 
 The exact shape of the `result` value will depend on which type of test the result belongs to.
 
@@ -667,7 +670,9 @@ The `value` key describes the JSON value that is to be parsed.
 A parsing test expects an object with two keys as a result.
 
 - `parses`: A boolean that describes if the parsed succesfully. `false` if the value was rejected.
-- `rendered`: The rendered version of the value that the implementation parsed, or `null` if the value was rejected.
+- `rendered`: The rendered version of the value that the implementation parsed.
+  This key must be absent if parsing failed, so that the tester can distinguish between a parse failure and succesfully parsing `null`.
+- `error`: A parse error. This key must be absent if parsing succeeded.
 
 #examples("parsing-test")
 
